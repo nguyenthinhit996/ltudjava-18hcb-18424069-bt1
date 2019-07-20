@@ -6,9 +6,11 @@
 package excerciseone.DAL;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,6 +42,21 @@ public class FileDAL{
         }
         return null;
     }  
+    
+    public BufferedWriter createBufferwriter(){
+        BufferedWriter bufferedWriter= null;
+        try {
+            File file= new File(getPath());
+            bufferedWriter = new BufferedWriter(new FileWriter(file));
+        } catch (IOException ex) {
+            Logger.getLogger(FileDAL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+             
+            return bufferedWriter;
+            
+        }
+        
+    }
 
     /**
      * @return the path

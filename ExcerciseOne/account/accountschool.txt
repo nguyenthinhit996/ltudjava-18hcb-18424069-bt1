@@ -1,5 +1,7 @@
-THINH,abc,23432,122
-THINH,abc,23432,14
-THINH,abc,23432,14
-THINH,abc,23432,144
-THINH,abc,23432,3
+THINH 1,hoc sinh,1,1
+THINH 2,hoc sinh,2,1
+THINH 3,hoc sinh,3,1
+THINH 4,hoc sinh,4,1
+THINH 5,hoc sinh,5,1
+Thầy a,giao vu,1,1
+Cô b,giao vu,2,1

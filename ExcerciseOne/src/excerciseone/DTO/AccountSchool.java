@@ -88,4 +88,16 @@ public class AccountSchool {
         this.status = status;
     }
     
+    public String tostring(){
+        StringBuilder str= new StringBuilder();
+        str.append(this.nameshow);
+        str.append(",");
+        str.append(this.namelogin);
+        str.append(",");
+        str.append(this.password);
+        str.append(",");
+        str.append(String.valueOf(this.status));
+        str.append(",");
+        return str.toString();
+    }
 }
