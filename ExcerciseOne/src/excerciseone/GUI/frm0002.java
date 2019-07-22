@@ -10,6 +10,7 @@ import excerciseone.DTO.AccountSchool;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
+import javax.swing.JFrame;
 import javax.swing.Timer;
 
 /**
@@ -41,6 +42,7 @@ public class frm0002 extends javax.swing.JFrame {
         timecurrents = new javax.swing.JLabel();
         btnchangepass = new javax.swing.JButton();
         btnlogout = new javax.swing.JButton();
+        username = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Management Student");
@@ -54,6 +56,7 @@ public class frm0002 extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(129, 211, 227));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1024, 600));
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
         jLabel1.setText("Giao vu");
@@ -81,12 +84,17 @@ public class frm0002 extends javax.swing.JFrame {
             }
         });
 
+        username.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        username.setForeground(new java.awt.Color(195, 37, 39));
+        username.setText("Name");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(258, Short.MAX_VALUE)
+                .addComponent(username)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
                 .addComponent(timecurrents)
                 .addGap(212, 212, 212)
                 .addComponent(btnchangepass)
@@ -101,10 +109,12 @@ public class frm0002 extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnlogout)
-                    .addComponent(btnchangepass)
-                    .addComponent(timecurrents))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnlogout)
+                        .addComponent(btnchangepass)
+                        .addComponent(timecurrents))
+                    .addComponent(username))
                 .addGap(66, 66, 66)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(268, Short.MAX_VALUE))
@@ -114,11 +124,11 @@ public class frm0002 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
         );
 
         pack();
@@ -126,11 +136,24 @@ public class frm0002 extends javax.swing.JFrame {
 
     private void btnlogoutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlogoutMousePressed
         // TODO add your handling code here:
+        this.setEnabled(false);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frmlogout frmlogout= new frmlogout();
+        frmlogout.setVisible(true);
+        frmlogout.setAlwaysOnTop(true);
+        frmlogout.setAccountSchool(accurent);
+        frmlogout.setFrm0002s(this);
     }//GEN-LAST:event_btnlogoutMousePressed
 
     private void btnchangepassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnchangepassMouseClicked
         // TODO add your handling code here:
-        
+           this.setEnabled(false);
+           this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+           frmchangepassword frmchange= new frmchangepassword();
+           frmchange.setVisible(true);
+           frmchange.setAlwaysOnTop(true);
+           frmchange.setAccountschool(accurent);
+           frmchange.setFrm0002s(this);
     }//GEN-LAST:event_btnchangepassMouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -146,6 +169,8 @@ public class frm0002 extends javax.swing.JFrame {
             };
             Timer t = new Timer(1000, updateClockAction);
             t.start();
+            
+            username.setText(accurent.getNameshow());
             
 //            Thread abc= new Thread(new Runnable() {
 //                @Override
@@ -209,6 +234,7 @@ public class frm0002 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel timecurrents;
+    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 
     /**

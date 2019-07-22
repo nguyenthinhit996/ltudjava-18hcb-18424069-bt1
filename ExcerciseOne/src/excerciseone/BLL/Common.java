@@ -30,10 +30,13 @@ public class Common {
             if(acc.getPassword().equals(passold)){
                 AccountSchoolDAL accDAL= new AccountSchoolDAL();
                 LinkedList<AccountSchool> in=accDAL.getAllAccount();
-                int index=in.indexOf(acc);
-                if(index != -1){
-                    in.get(index).setPassword(passnew);
+                for(int i=0;i<in.size();i++){
+                    if(acc.getNamelogin().equals(in.get(i).getNamelogin()) 
+                            && acc.getPassword().equals(in.get(i).getPassword())){
+                        in.get(i).setPassword(passnew);
+                    }
                 }
+                
                 accDAL.writeAllAccount(in);
                 return true;
             }

@@ -52,6 +52,7 @@ public class AccountSchoolDAL {
              while(in.hasNext()){
                  AccountSchool a=in.next();
                  bufferedWriter.append(a.tostring());
+                 bufferedWriter.newLine();
              }
              bufferedWriter.flush();
              bufferedWriter.close();

@@ -97,7 +97,6 @@ public class AccountSchool {
         str.append(this.password);
         str.append(",");
         str.append(String.valueOf(this.status));
-        str.append(",");
         return str.toString();
     }
 }
