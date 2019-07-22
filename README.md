@@ -1,6 +1,6 @@
 # ltudjava-18hcb-18424069-bt1
 Bài tập 1 : Lập trình java swing + đọc xuất qua dữ liệu file.
-Mỗi trường làm việc : 
+Môi trường làm việc : 
 + Product Version: NetBeans IDE 8.2 (Build 201705191307)
 + Updates: NetBeans IDE is updated to version NetBeans 8.2 Patch 2
 + Java: 1.8.0_212; OpenJDK 64-Bit Server VM 25.212-b03
