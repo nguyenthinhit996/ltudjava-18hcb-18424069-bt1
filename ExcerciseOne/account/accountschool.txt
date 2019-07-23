@@ -1,7 +1,7 @@
-THINH 1,hoc sinh,2,1
-THINH 2,hoc sinh,2,1
-THINH 3,hoc sinh,3,1
-THINH 4,hoc sinh,4,1
-THINH 5,hoc sinh,5,1
+THINH 1,000001,2,1
+THINH 2,000002,2,1
+THINH 3,000003,3,1
+THINH 4,000004,4,1
+THINH 5,000005,5,1
 Teacher a,giao vu,100,1
 Mrs.B ,giao vu,100,1

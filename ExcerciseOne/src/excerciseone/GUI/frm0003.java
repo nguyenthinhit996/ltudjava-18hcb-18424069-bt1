@@ -41,6 +41,7 @@ public class frm0003 extends javax.swing.JFrame {
         btnchangepass = new javax.swing.JButton();
         btnlogout = new javax.swing.JButton();
         username = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Management Study");
@@ -83,6 +84,8 @@ public class frm0003 extends javax.swing.JFrame {
         username.setForeground(new java.awt.Color(195, 37, 39));
         username.setText("Name");
 
+        jLabel1.setText("sdfsdfdsfsdafads");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -96,6 +99,10 @@ public class frm0003 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnlogout)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(248, 248, 248)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +113,9 @@ public class frm0003 extends javax.swing.JFrame {
                         .addComponent(btnchangepass)
                         .addComponent(timecurrents))
                     .addComponent(username))
-                .addContainerGap(401, Short.MAX_VALUE))
+                .addGap(86, 86, 86)
+                .addComponent(jLabel1)
+                .addContainerGap(297, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -217,6 +226,7 @@ public class frm0003 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnchangepass;
     private javax.swing.JButton btnlogout;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel timecurrents;
     private javax.swing.JLabel username;

@@ -9,9 +9,10 @@ import excerciseone.BLL.Common;
 import excerciseone.DTO.AccountSchool;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
+import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,6 +27,7 @@ public class frm0002 extends javax.swing.JFrame {
      */
     public frm0002() {
         initComponents();
+        initalAllTable();
     }
 
     /**
@@ -37,29 +39,64 @@ public class frm0002 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jPanelRoot = new javax.swing.JPanel();
         timecurrents = new javax.swing.JLabel();
         btnchangepass = new javax.swing.JButton();
         btnlogout = new javax.swing.JButton();
         username = new javax.swing.JLabel();
+        jpannelviewstudentclass = new javax.swing.JPanel();
+        labelviewstudentclass = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablestudentclass = new javax.swing.JTable();
+        labelviewstudentclass1 = new javax.swing.JLabel();
+        jpannelviewscheduleclass = new javax.swing.JPanel();
+        labelviewscheduleclass = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tablescheduleclass = new javax.swing.JTable();
+        labelviewscheduleclass1 = new javax.swing.JLabel();
+        jpannelviewpointsubject = new javax.swing.JPanel();
+        labelviewpointsubject = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tablepointsubject = new javax.swing.JTable();
+        labelviewpointsubject1 = new javax.swing.JLabel();
+        jpannelviewstudentsubject = new javax.swing.JPanel();
+        labelviewstudentsubject = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tablestudentsubject = new javax.swing.JTable();
+        labelviewstudentsubject1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        File = new javax.swing.JMenu();
+        importStudent = new javax.swing.JMenuItem();
+        importschedules = new javax.swing.JMenuItem();
+        importpoint = new javax.swing.JMenuItem();
+        Edit = new javax.swing.JMenu();
+        managestudentclass = new javax.swing.JMenuItem();
+        managastudentsubject = new javax.swing.JMenuItem();
+        managapointstudent = new javax.swing.JMenuItem();
+        View = new javax.swing.JMenu();
+        viewstudentclass = new javax.swing.JMenuItem();
+        viewscheduleclass = new javax.swing.JMenuItem();
+        viewstudentsubject = new javax.swing.JMenuItem();
+        viewpointsubject = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Management Student");
         setLocation(new java.awt.Point(150, 50));
         setPreferredSize(new java.awt.Dimension(1024, 600));
         setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(129, 211, 227));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1024, 600));
-
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
-        jLabel1.setText("Giao vu");
+        jPanelRoot.setBackground(new java.awt.Color(129, 211, 227));
+        jPanelRoot.setPreferredSize(new java.awt.Dimension(1024, 600));
 
         timecurrents.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         timecurrents.setText("0000-00-00 00:00:00 ");
@@ -86,80 +123,382 @@ public class frm0002 extends javax.swing.JFrame {
 
         username.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         username.setForeground(new java.awt.Color(195, 37, 39));
+        username.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/support(2).png"))); // NOI18N
         username.setText("Name");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jpannelviewstudentclass.setBackground(new java.awt.Color(129, 211, 227));
+        jpannelviewstudentclass.setPreferredSize(new java.awt.Dimension(1024, 500));
+
+        labelviewstudentclass.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        labelviewstudentclass.setText("All Students Class:");
+
+        jScrollPane2.setViewportView(tablestudentclass);
+
+        labelviewstudentclass1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        labelviewstudentclass1.setText("Code Class ");
+
+        javax.swing.GroupLayout jpannelviewstudentclassLayout = new javax.swing.GroupLayout(jpannelviewstudentclass);
+        jpannelviewstudentclass.setLayout(jpannelviewstudentclassLayout);
+        jpannelviewstudentclassLayout.setHorizontalGroup(
+            jpannelviewstudentclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpannelviewstudentclassLayout.createSequentialGroup()
+                .addComponent(labelviewstudentclass, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelviewstudentclass1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane2)
+        );
+        jpannelviewstudentclassLayout.setVerticalGroup(
+            jpannelviewstudentclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpannelviewstudentclassLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpannelviewstudentclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelviewstudentclass)
+                    .addComponent(labelviewstudentclass1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE))
+        );
+
+        jpannelviewscheduleclass.setBackground(new java.awt.Color(129, 211, 227));
+        jpannelviewscheduleclass.setPreferredSize(new java.awt.Dimension(1024, 500));
+
+        labelviewscheduleclass.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        labelviewscheduleclass.setText("Schedule Class:");
+
+        jScrollPane3.setViewportView(tablescheduleclass);
+
+        labelviewscheduleclass1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        labelviewscheduleclass1.setText("Code Class ");
+
+        javax.swing.GroupLayout jpannelviewscheduleclassLayout = new javax.swing.GroupLayout(jpannelviewscheduleclass);
+        jpannelviewscheduleclass.setLayout(jpannelviewscheduleclassLayout);
+        jpannelviewscheduleclassLayout.setHorizontalGroup(
+            jpannelviewscheduleclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpannelviewscheduleclassLayout.createSequentialGroup()
+                .addComponent(labelviewscheduleclass, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelviewscheduleclass1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
+        );
+        jpannelviewscheduleclassLayout.setVerticalGroup(
+            jpannelviewscheduleclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpannelviewscheduleclassLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpannelviewscheduleclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelviewscheduleclass)
+                    .addComponent(labelviewscheduleclass1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))
+        );
+
+        jpannelviewpointsubject.setBackground(new java.awt.Color(129, 211, 227));
+        jpannelviewpointsubject.setPreferredSize(new java.awt.Dimension(1024, 500));
+
+        labelviewpointsubject.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        labelviewpointsubject.setText("Point of Subject: ");
+
+        jScrollPane4.setViewportView(tablepointsubject);
+
+        labelviewpointsubject1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        labelviewpointsubject1.setText("Code Class ");
+
+        javax.swing.GroupLayout jpannelviewpointsubjectLayout = new javax.swing.GroupLayout(jpannelviewpointsubject);
+        jpannelviewpointsubject.setLayout(jpannelviewpointsubjectLayout);
+        jpannelviewpointsubjectLayout.setHorizontalGroup(
+            jpannelviewpointsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpannelviewpointsubjectLayout.createSequentialGroup()
+                .addComponent(labelviewpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelviewpointsubject1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
+        );
+        jpannelviewpointsubjectLayout.setVerticalGroup(
+            jpannelviewpointsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpannelviewpointsubjectLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpannelviewpointsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelviewpointsubject)
+                    .addComponent(labelviewpointsubject1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))
+        );
+
+        jpannelviewstudentsubject.setBackground(new java.awt.Color(129, 211, 227));
+        jpannelviewstudentsubject.setPreferredSize(new java.awt.Dimension(1024, 500));
+
+        labelviewstudentsubject.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        labelviewstudentsubject.setText("All Student of subject:");
+
+        jScrollPane5.setViewportView(tablestudentsubject);
+
+        labelviewstudentsubject1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        labelviewstudentsubject1.setText("Code Class ");
+
+        javax.swing.GroupLayout jpannelviewstudentsubjectLayout = new javax.swing.GroupLayout(jpannelviewstudentsubject);
+        jpannelviewstudentsubject.setLayout(jpannelviewstudentsubjectLayout);
+        jpannelviewstudentsubjectLayout.setHorizontalGroup(
+            jpannelviewstudentsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpannelviewstudentsubjectLayout.createSequentialGroup()
+                .addComponent(labelviewstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelviewstudentsubject1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
+        );
+        jpannelviewstudentsubjectLayout.setVerticalGroup(
+            jpannelviewstudentsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpannelviewstudentsubjectLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpannelviewstudentsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelviewstudentsubject)
+                    .addComponent(labelviewstudentsubject1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanelRootLayout = new javax.swing.GroupLayout(jPanelRoot);
+        jPanelRoot.setLayout(jPanelRootLayout);
+        jPanelRootLayout.setHorizontalGroup(
+            jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRootLayout.createSequentialGroup()
+                .addContainerGap(476, Short.MAX_VALUE)
                 .addComponent(username)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                .addGap(82, 82, 82)
                 .addComponent(timecurrents)
-                .addGap(212, 212, 212)
+                .addGap(18, 18, 18)
                 .addComponent(btnchangepass)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnlogout)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jpannelviewstudentclass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelRootLayout.createSequentialGroup()
+                    .addComponent(jpannelviewscheduleclass, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jpannelviewpointsubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jpannelviewstudentsubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnlogout)
-                        .addComponent(btnchangepass)
-                        .addComponent(timecurrents))
-                    .addComponent(username))
-                .addGap(66, 66, 66)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(268, Short.MAX_VALUE))
+        jPanelRootLayout.setVerticalGroup(
+            jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRootLayout.createSequentialGroup()
+                .addGroup(jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnlogout)
+                    .addComponent(btnchangepass)
+                    .addComponent(username)
+                    .addComponent(timecurrents))
+                .addGap(18, 18, 18)
+                .addComponent(jpannelviewstudentclass, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE))
+            .addGroup(jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRootLayout.createSequentialGroup()
+                    .addGap(0, 46, Short.MAX_VALUE)
+                    .addComponent(jpannelviewscheduleclass, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRootLayout.createSequentialGroup()
+                    .addGap(0, 44, Short.MAX_VALUE)
+                    .addComponent(jpannelviewpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRootLayout.createSequentialGroup()
+                    .addGap(0, 49, Short.MAX_VALUE)
+                    .addComponent(jpannelviewstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
+
+        jMenuBar1.setBackground(new java.awt.Color(79, 142, 163));
+        jMenuBar1.setFont(new java.awt.Font("Ubuntu", 3, 18)); // NOI18N
+
+        File.setBackground(new java.awt.Color(79, 142, 163));
+        File.setText("File");
+        File.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+
+        importStudent.setBackground(new java.awt.Color(79, 142, 163));
+        importStudent.setText("Import Students Class");
+        File.add(importStudent);
+
+        importschedules.setBackground(new java.awt.Color(79, 142, 163));
+        importschedules.setText("Import Shedules Class");
+        File.add(importschedules);
+
+        importpoint.setText("Import Point Subject");
+        File.add(importpoint);
+
+        jMenuBar1.add(File);
+
+        Edit.setBackground(new java.awt.Color(79, 142, 163));
+        Edit.setText("Edit");
+        Edit.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+
+        managestudentclass.setText("Manage Students Class");
+        Edit.add(managestudentclass);
+
+        managastudentsubject.setText("Manage Student Subject");
+        Edit.add(managastudentsubject);
+
+        managapointstudent.setText("Manage Point Student");
+        Edit.add(managapointstudent);
+
+        jMenuBar1.add(Edit);
+
+        View.setBackground(new java.awt.Color(79, 142, 163));
+        View.setText("View");
+        View.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+
+        viewstudentclass.setBackground(new java.awt.Color(79, 142, 163));
+        viewstudentclass.setText("View Students Class");
+        viewstudentclass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewstudentclassMouseClicked(evt);
+            }
+        });
+        viewstudentclass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewstudentclassActionPerformed(evt);
+            }
+        });
+        View.add(viewstudentclass);
+
+        viewscheduleclass.setBackground(new java.awt.Color(79, 142, 163));
+        viewscheduleclass.setText("View Schedules Class");
+        viewscheduleclass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewscheduleclassMouseClicked(evt);
+            }
+        });
+        viewscheduleclass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewscheduleclassActionPerformed(evt);
+            }
+        });
+        View.add(viewscheduleclass);
+
+        viewstudentsubject.setText("View Students Subject");
+        viewstudentsubject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewstudentsubjectActionPerformed(evt);
+            }
+        });
+        View.add(viewstudentsubject);
+
+        viewpointsubject.setText("View Point Subject");
+        viewpointsubject.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewpointsubjectMouseClicked(evt);
+            }
+        });
+        viewpointsubject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewpointsubjectActionPerformed(evt);
+            }
+        });
+        View.add(viewpointsubject);
+
+        jMenuBar1.add(View);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
+            .addComponent(jPanelRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+            .addComponent(jPanelRoot, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnlogoutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlogoutMousePressed
-        // TODO add your handling code here:
-        this.setEnabled(false);
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        frmlogout frmlogout= new frmlogout();
-        frmlogout.setVisible(true);
-        frmlogout.setAlwaysOnTop(true);
-        frmlogout.setAccountSchool(accurent);
-        frmlogout.setFrm0002s(this);
-    }//GEN-LAST:event_btnlogoutMousePressed
-
-    private void btnchangepassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnchangepassMouseClicked
-        // TODO add your handling code here:
-           this.setEnabled(false);
-           this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-           frmchangepassword frmchange= new frmchangepassword();
-           frmchange.setVisible(true);
-           frmchange.setAlwaysOnTop(true);
-           frmchange.setAccountschool(accurent);
-           frmchange.setFrm0002s(this);
-    }//GEN-LAST:event_btnchangepassMouseClicked
-
+    void inittablestudentclass(){
+        
+        DefaultTableModel model= new DefaultTableModel(){
+            public boolean isCellEditable(int row, int col){
+		return false;
+            }
+        };
+        model.addColumn("STT");
+        model.addColumn("MSSV");
+        model.addColumn("FULL NAME");
+        model.addColumn("SEX");
+        model.addColumn("IDENTITY");
+ 
+         
+        tablestudentclass.setModel(model);
+        tablestudentclass.setVisible(false);
+    }
+    
+    void inittablepointsubject(){
+        DefaultTableModel model= new DefaultTableModel(){
+            public boolean isCellEditable(int row, int col){
+		return false;
+            }
+        };
+        model.addColumn("STT");
+        model.addColumn("MSSV");
+        model.addColumn("FULL NAME");
+        model.addColumn("POINT MID");
+        model.addColumn("POINT FINAL");
+        model.addColumn("POINT DIFFERENCE");
+        model.addColumn("POINT SUMMARY");
+        model.addRow(new Object[]{
+            1,2,3,4,5,6,7
+        });
+         
+        tablepointsubject.setModel(model);
+        tablepointsubject.setVisible(false);
+    }
+    
+    void inittablescheduleclass(){
+        DefaultTableModel model= new DefaultTableModel(){
+            public boolean isCellEditable(int row, int col){
+		return false;
+            }
+        };
+        model.addColumn("STT");
+        model.addColumn("CODE SUBJECT");
+        model.addColumn("NAME SUBJECT");
+        model.addColumn("ROOM");
+        model.addRow(new Object[]{
+            1,2,3,4
+        });
+         
+        tablescheduleclass.setModel(model);
+        tablescheduleclass.setVisible(false);
+    }
+    
+    void initviewstudentsubject(){
+        DefaultTableModel model= new DefaultTableModel(){
+            public boolean isCellEditable(int row, int col){
+		return false;
+            }
+        };
+        model.addColumn("STT");
+        model.addColumn("MSSV");
+        model.addColumn("FULL NAME");
+        model.addColumn("SEX");
+        model.addColumn("IDENTITY");
+        model.addRow(new Object[]{
+            1,2,3,4,5
+        });
+         
+        tablestudentsubject.setModel(model);
+        tablestudentsubject.setVisible(false);
+    }
+    
+    void initalAllTable(){
+        initviewstudentsubject();
+        inittablestudentclass();
+        inittablescheduleclass();
+        inittablepointsubject();
+    }
+    
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
 
+
             // TODO add your handling code here:
-            
             Common com= new Common();
             ActionListener updateClockAction = new ActionListener() {
                     @Override
@@ -189,6 +528,106 @@ public class frm0002 extends javax.swing.JFrame {
             
             
     }//GEN-LAST:event_formWindowActivated
+
+    private void viewscheduleclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewscheduleclassActionPerformed
+        // TODO add your handling code here:
+        jpannelviewpointsubject.setVisible(false);
+        jpannelviewscheduleclass.setVisible(true);
+        jpannelviewstudentclass.setVisible(false);
+        jpannelviewstudentsubject.setVisible(false);
+    }//GEN-LAST:event_viewscheduleclassActionPerformed
+
+    private void btnlogoutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlogoutMousePressed
+        // TODO add your handling code here:
+        this.setEnabled(false);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frmlogout frmlogout= new frmlogout();
+        frmlogout.setVisible(true);
+        frmlogout.setAlwaysOnTop(true);
+        frmlogout.setAccountSchool(accurent);
+        frmlogout.setFrm0002s(this);
+    }//GEN-LAST:event_btnlogoutMousePressed
+
+    private void btnchangepassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnchangepassMouseClicked
+        // TODO add your handling code here:
+        this.setEnabled(false);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frmchangepassword frmchange= new frmchangepassword();
+        frmchange.setVisible(true);
+        frmchange.setAlwaysOnTop(true);
+        frmchange.setAccountschool(accurent);
+        frmchange.setFrm0002s(this);
+    }//GEN-LAST:event_btnchangepassMouseClicked
+
+    private void viewstudentclassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewstudentclassMouseClicked
+        // TODO add your handling code here:
+        jpannelviewpointsubject.setVisible(false);
+        jpannelviewscheduleclass.setVisible(false);
+        jpannelviewstudentclass.setVisible(true);
+        jpannelviewstudentsubject.setVisible(false);
+    }//GEN-LAST:event_viewstudentclassMouseClicked
+
+    private void viewscheduleclassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewscheduleclassMouseClicked
+        // TODO add your handling code here:
+        jpannelviewpointsubject.setVisible(false);
+        jpannelviewscheduleclass.setVisible(true);
+        jpannelviewstudentclass.setVisible(false);
+        jpannelviewstudentsubject.setVisible(false);
+    }//GEN-LAST:event_viewscheduleclassMouseClicked
+
+    private void viewpointsubjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewpointsubjectMouseClicked
+        // TODO add your handling code here:
+        jpannelviewpointsubject.setVisible(true);
+        jpannelviewscheduleclass.setVisible(false);
+        jpannelviewstudentclass.setVisible(false);
+        jpannelviewstudentsubject.setVisible(false);
+    }//GEN-LAST:event_viewpointsubjectMouseClicked
+
+    private void viewstudentclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewstudentclassActionPerformed
+        // TODO add your handling code here:
+        jpannelviewpointsubject.setVisible(false);
+        jpannelviewscheduleclass.setVisible(false);
+        jpannelviewstudentclass.setVisible(true);
+        jpannelviewstudentsubject.setVisible(false);
+          
+       
+   
+        DefaultTableModel models = (DefaultTableModel) tablestudentclass.getModel();
+        Vector row= new Vector();
+        row.add(1);
+        row.add(2);
+         row.add(1);
+        row.add(2);
+         row.add(1);
+        
+        models.addRow(row);
+         
+         
+    }//GEN-LAST:event_viewstudentclassActionPerformed
+
+    private void viewpointsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewpointsubjectActionPerformed
+        // TODO add your handling code here:
+        jpannelviewpointsubject.setVisible(true);
+        jpannelviewscheduleclass.setVisible(false);
+        jpannelviewstudentclass.setVisible(false);
+        jpannelviewstudentsubject.setVisible(false);
+    }//GEN-LAST:event_viewpointsubjectActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        jpannelviewpointsubject.setVisible(false);
+        jpannelviewscheduleclass.setVisible(false);
+        jpannelviewstudentclass.setVisible(false);
+        jpannelviewstudentsubject.setVisible(false);
+    }//GEN-LAST:event_formComponentShown
+
+    private void viewstudentsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewstudentsubjectActionPerformed
+        // TODO add your handling code here:
+        jpannelviewpointsubject.setVisible(false);
+        jpannelviewscheduleclass.setVisible(false);
+        jpannelviewstudentclass.setVisible(false);
+        jpannelviewstudentsubject.setVisible(true);
+    }//GEN-LAST:event_viewstudentsubjectActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,12 +668,45 @@ public class frm0002 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Edit;
+    private javax.swing.JMenu File;
+    private javax.swing.JMenu View;
     private javax.swing.JButton btnchangepass;
     private javax.swing.JButton btnlogout;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem importStudent;
+    private javax.swing.JMenuItem importpoint;
+    private javax.swing.JMenuItem importschedules;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanelRoot;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JPanel jpannelviewpointsubject;
+    private javax.swing.JPanel jpannelviewscheduleclass;
+    private javax.swing.JPanel jpannelviewstudentclass;
+    private javax.swing.JPanel jpannelviewstudentsubject;
+    private javax.swing.JLabel labelviewpointsubject;
+    private javax.swing.JLabel labelviewpointsubject1;
+    private javax.swing.JLabel labelviewscheduleclass;
+    private javax.swing.JLabel labelviewscheduleclass1;
+    private javax.swing.JLabel labelviewstudentclass;
+    private javax.swing.JLabel labelviewstudentclass1;
+    private javax.swing.JLabel labelviewstudentsubject;
+    private javax.swing.JLabel labelviewstudentsubject1;
+    private javax.swing.JMenuItem managapointstudent;
+    private javax.swing.JMenuItem managastudentsubject;
+    private javax.swing.JMenuItem managestudentclass;
+    private javax.swing.JTable tablepointsubject;
+    private javax.swing.JTable tablescheduleclass;
+    private javax.swing.JTable tablestudentclass;
+    private javax.swing.JTable tablestudentsubject;
     private javax.swing.JLabel timecurrents;
     private javax.swing.JLabel username;
+    private javax.swing.JMenuItem viewpointsubject;
+    private javax.swing.JMenuItem viewscheduleclass;
+    private javax.swing.JMenuItem viewstudentclass;
+    private javax.swing.JMenuItem viewstudentsubject;
     // End of variables declaration//GEN-END:variables
 
     /**

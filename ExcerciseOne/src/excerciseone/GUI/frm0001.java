@@ -205,6 +205,8 @@ public class frm0001 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnameloginKeyPressed
 
     public void checklogin(){
+        txtnamelogin.setText("giao vu");
+        txtpasslogin.setText("100");
        labelerrorlogin.setVisible(false);
        String name=txtnamelogin.getText();
        String pass=txtpasslogin.getText();
