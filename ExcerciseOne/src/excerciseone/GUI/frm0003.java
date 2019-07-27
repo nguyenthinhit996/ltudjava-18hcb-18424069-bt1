@@ -6,7 +6,7 @@
 package excerciseone.GUI;
 
 import excerciseone.BLL.Common;
-import excerciseone.DTO.AccountSchool;
+import excerciseone.DTO.AccountSchoolDTO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -18,7 +18,7 @@ import javax.swing.Timer;
  */
 public class frm0003 extends javax.swing.JFrame {
 
-    private AccountSchool accurent;
+    private AccountSchoolDTO accurent;
     
     /**
      * Creates new form frm0002
@@ -235,14 +235,14 @@ public class frm0003 extends javax.swing.JFrame {
     /**
      * @return the accurent
      */
-    public AccountSchool getAccurent() {
+    public AccountSchoolDTO getAccurent() {
         return accurent;
     }
 
     /**
      * @param accurent the accurent to set
      */
-    public void setAccurent(AccountSchool accurent) {
+    public void setAccurent(AccountSchoolDTO accurent) {
         this.accurent = accurent;
     }
 }

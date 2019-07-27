@@ -5,7 +5,7 @@
  */
 package excerciseone.GUI;
 
-import excerciseone.DTO.AccountSchool;
+import excerciseone.DTO.AccountSchoolDTO;
 import javax.swing.JFrame;
 
 /**
@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  * @author peter
  */
 public class frmlogout extends javax.swing.JFrame {
-    private AccountSchool accountSchool ;
+    private AccountSchoolDTO accountSchool ;
     private frm0002 frm0002s;
     private frm0003 frm0003s;
     
@@ -228,14 +228,14 @@ public class frmlogout extends javax.swing.JFrame {
     /**
      * @return the accountSchool
      */
-    public AccountSchool getAccountSchool() {
+    public AccountSchoolDTO getAccountSchool() {
         return accountSchool;
     }
 
     /**
      * @param accountSchool the accountSchool to set
      */
-    public void setAccountSchool(AccountSchool accountSchool) {
+    public void setAccountSchool(AccountSchoolDTO accountSchool) {
         this.accountSchool = accountSchool;
     }
 

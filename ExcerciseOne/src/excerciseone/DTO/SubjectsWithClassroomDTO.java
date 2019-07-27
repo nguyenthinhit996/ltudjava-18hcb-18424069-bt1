@@ -11,17 +11,17 @@ import java.util.LinkedList;
  *
  * @author peter
  */
-public class SubjectsWithClassroom {
-    private String nameroom;
+public class SubjectsWithClassroomDTO {
+    private String nameclass;
     private String codesubject;
     private String namesubject;
-    private LinkedList<StudentsWithPoint> collectionpoint;
-    private LinkedList<Students> collectionstudent;
+    private LinkedList<StudentsWithPointDTO> collectionpoint;
+    private LinkedList<StudentsDTO> collectionstudent;
     
-    public SubjectsWithClassroom(String name,String codesub,
-            String namesub, LinkedList<Students> colstuden,
-            LinkedList<StudentsWithPoint> colpoint ){
-        this.nameroom=name;
+    public SubjectsWithClassroomDTO(String name,String codesub,
+            String namesub, LinkedList<StudentsDTO> colstuden,
+            LinkedList<StudentsWithPointDTO> colpoint ){
+        this.nameclass=name;
         this.codesubject=codesub;
         this.collectionstudent=colstuden;
         this.collectionpoint=colpoint;
@@ -31,14 +31,14 @@ public class SubjectsWithClassroom {
      * @return the nameroom
      */
     public String getNameroom() {
-        return nameroom;
+        return nameclass;
     }
 
     /**
      * @param nameroom the nameroom to set
      */
     public void setNameroom(String nameroom) {
-        this.nameroom = nameroom;
+        this.nameclass = nameroom;
     }
 
     /**
@@ -72,28 +72,28 @@ public class SubjectsWithClassroom {
     /**
      * @return the collectionpoint
      */
-    public LinkedList<StudentsWithPoint> getCollectionpoint() {
+    public LinkedList<StudentsWithPointDTO> getCollectionpoint() {
         return collectionpoint;
     }
 
     /**
      * @param collectionpoint the collectionpoint to set
      */
-    public void setCollectionpoint(LinkedList<StudentsWithPoint> collectionpoint) {
+    public void setCollectionpoint(LinkedList<StudentsWithPointDTO> collectionpoint) {
         this.collectionpoint = collectionpoint;
     }
 
     /**
      * @return the collectionstudent
      */
-    public LinkedList<Students> getCollectionstudent() {
+    public LinkedList<StudentsDTO> getCollectionstudent() {
         return collectionstudent;
     }
 
     /**
      * @param collectionstudent the collectionstudent to set
      */
-    public void setCollectionstudent(LinkedList<Students> collectionstudent) {
+    public void setCollectionstudent(LinkedList<StudentsDTO> collectionstudent) {
         this.collectionstudent = collectionstudent;
     }
 

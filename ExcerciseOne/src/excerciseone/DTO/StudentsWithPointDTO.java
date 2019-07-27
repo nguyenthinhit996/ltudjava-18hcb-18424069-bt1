@@ -9,7 +9,7 @@ package excerciseone.DTO;
  *
  * @author peter
  */
-public class StudentsWithPoint {
+public class StudentsWithPointDTO {
     private String namestudent;
     private String mssv;
     private int pointmid;
@@ -17,7 +17,7 @@ public class StudentsWithPoint {
     private int pointdifference;
     private float pointsummary;
     
-    public StudentsWithPoint(String name, String ms){
+    public StudentsWithPointDTO(String name, String ms){
         this.namestudent=name;
         this.mssv=ms;
         this.pointdifference=0;

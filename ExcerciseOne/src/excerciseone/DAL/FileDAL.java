@@ -12,6 +12,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -57,6 +59,34 @@ public class FileDAL{
         }
         
     }
+    
+     public static ArrayList<String> getAllSchoolYearExists(){
+          ArrayList<String> sy= new ArrayList<>();
+          File folder = new File("repository");
+          File[] file= folder.listFiles();
+          for(File fi:file){
+              if(fi.isDirectory()){
+               sy.add(fi.getName());   
+              }
+          }
+          Collections.sort(sy);
+          return sy;
+      }
+     
+      public static ArrayList<String> getAllClassExists(String year){
+          String path="repository"+ File.separator+year;
+          ArrayList<String> sy= new ArrayList<>();
+          File folder = new File(path);
+          File[] file= folder.listFiles();
+          for(File fi:file){
+              if(fi.isDirectory()){
+               sy.add(fi.getName());   
+              }
+          }
+          Collections.sort(sy);
+          return sy;
+      }
+     
 
     /**
      * @return the path

@@ -5,11 +5,19 @@
  */
 package excerciseone.GUI;
 
+import excerciseone.BLL.Frm0002BLL;
 import excerciseone.BLL.Common;
-import excerciseone.DTO.AccountSchool;
+import excerciseone.DTO.AccountSchoolDTO;
+import excerciseone.DTO.ClassRoomDTO;
+import excerciseone.DTO.StudentsDTO;
+import excerciseone.DTO.SubjectsDTO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Vector;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -19,16 +27,18 @@ import javax.swing.table.DefaultTableModel;
  * @author peter
  */
 public class frm0002 extends javax.swing.JFrame {
-
-    private AccountSchool accurent;
+    
+    private AccountSchoolDTO accurent;
     
     /**
      * Creates new form frm0002
      */
     public frm0002() {
         initComponents();
-        initalAllTable();
+        createContent();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,23 +57,65 @@ public class frm0002 extends javax.swing.JFrame {
         jpannelviewstudentclass = new javax.swing.JPanel();
         labelviewstudentclass = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tablestudentclass = new javax.swing.JTable();
-        labelviewstudentclass1 = new javax.swing.JLabel();
+        DefaultTableModel modeltablestudentclass= new DefaultTableModel(){
+            public boolean isCellEditable(int row, int col){
+                return false;
+            }
+        };
+        modeltablestudentclass.addColumn("STT");
+        modeltablestudentclass.addColumn("MSSV");
+        modeltablestudentclass.addColumn("FULL NAME");
+        modeltablestudentclass.addColumn("SEX");
+        modeltablestudentclass.addColumn("IDENTITY");
+        tablestudentclass = new javax.swing.JTable(modeltablestudentclass);
+        cbxstudentclass = new javax.swing.JComboBox<>();
         jpannelviewscheduleclass = new javax.swing.JPanel();
         labelviewscheduleclass = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tablescheduleclass = new javax.swing.JTable();
-        labelviewscheduleclass1 = new javax.swing.JLabel();
+        DefaultTableModel modeltablescheduleclass= new DefaultTableModel(){
+            public boolean isCellEditable(int row, int col){
+                return false;
+            }
+        };
+
+        modeltablescheduleclass.addColumn("STT");
+        modeltablescheduleclass.addColumn("CODE SUBJECT");
+        modeltablescheduleclass.addColumn("NAME SUBJECT");
+        modeltablescheduleclass.addColumn("ROOM");
+        tablescheduleclass = new javax.swing.JTable(modeltablescheduleclass);
+        cbxscheduleclass = new javax.swing.JComboBox<>();
         jpannelviewpointsubject = new javax.swing.JPanel();
         labelviewpointsubject = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tablepointsubject = new javax.swing.JTable();
-        labelviewpointsubject1 = new javax.swing.JLabel();
+        DefaultTableModel modeltablepointsubject= new DefaultTableModel(){
+            public boolean isCellEditable(int row, int col){
+                return false;
+            }
+        };
+        modeltablepointsubject.addColumn("STT");
+        modeltablepointsubject.addColumn("MSSV");
+        modeltablepointsubject.addColumn("FULL NAME");
+        modeltablepointsubject.addColumn("POINT MID");
+        modeltablepointsubject.addColumn("POINT FINAL");
+        modeltablepointsubject.addColumn("POINT DIFFERENCE");
+        modeltablepointsubject.addColumn("POINT SUMMARY");
+        tablepointsubject = new javax.swing.JTable(modeltablepointsubject);
+        cbxpointsubject = new javax.swing.JComboBox<>();
         jpannelviewstudentsubject = new javax.swing.JPanel();
         labelviewstudentsubject = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        tablestudentsubject = new javax.swing.JTable();
-        labelviewstudentsubject1 = new javax.swing.JLabel();
+        DefaultTableModel modeltablestudentsubject= new DefaultTableModel(){
+            public boolean isCellEditable(int row, int col){
+                return false;
+            }
+        };
+        modeltablestudentsubject.addColumn("STT");
+        modeltablestudentsubject.addColumn("MSSV");
+        modeltablestudentsubject.addColumn("FULL NAME");
+        modeltablestudentsubject.addColumn("SEX");
+        modeltablestudentsubject.addColumn("IDENTITY");
+        tablestudentsubject = new javax.swing.JTable(modeltablestudentsubject);
+        cbxstudentsubject = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         File = new javax.swing.JMenu();
         importStudent = new javax.swing.JMenuItem();
@@ -134,8 +186,12 @@ public class frm0002 extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(tablestudentclass);
 
-        labelviewstudentclass1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        labelviewstudentclass1.setText("Code Class ");
+        cbxstudentclass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxstudentclass.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxstudentclassItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpannelviewstudentclassLayout = new javax.swing.GroupLayout(jpannelviewstudentclass);
         jpannelviewstudentclass.setLayout(jpannelviewstudentclassLayout);
@@ -143,10 +199,10 @@ public class frm0002 extends javax.swing.JFrame {
             jpannelviewstudentclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpannelviewstudentclassLayout.createSequentialGroup()
                 .addComponent(labelviewstudentclass, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelviewstudentclass1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(cbxstudentclass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
         jpannelviewstudentclassLayout.setVerticalGroup(
             jpannelviewstudentclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,9 +210,9 @@ public class frm0002 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpannelviewstudentclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelviewstudentclass)
-                    .addComponent(labelviewstudentclass1))
+                    .addComponent(cbxstudentclass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
         );
 
         jpannelviewscheduleclass.setBackground(new java.awt.Color(129, 211, 227));
@@ -167,8 +223,12 @@ public class frm0002 extends javax.swing.JFrame {
 
         jScrollPane3.setViewportView(tablescheduleclass);
 
-        labelviewscheduleclass1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        labelviewscheduleclass1.setText("Code Class ");
+        cbxscheduleclass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxscheduleclass.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxscheduleclassItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpannelviewscheduleclassLayout = new javax.swing.GroupLayout(jpannelviewscheduleclass);
         jpannelviewscheduleclass.setLayout(jpannelviewscheduleclassLayout);
@@ -176,8 +236,8 @@ public class frm0002 extends javax.swing.JFrame {
             jpannelviewscheduleclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpannelviewscheduleclassLayout.createSequentialGroup()
                 .addComponent(labelviewscheduleclass, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelviewscheduleclass1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(cbxscheduleclass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
@@ -187,9 +247,9 @@ public class frm0002 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpannelviewscheduleclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelviewscheduleclass)
-                    .addComponent(labelviewscheduleclass1))
+                    .addComponent(cbxscheduleclass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
         );
 
         jpannelviewpointsubject.setBackground(new java.awt.Color(129, 211, 227));
@@ -200,8 +260,7 @@ public class frm0002 extends javax.swing.JFrame {
 
         jScrollPane4.setViewportView(tablepointsubject);
 
-        labelviewpointsubject1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        labelviewpointsubject1.setText("Code Class ");
+        cbxpointsubject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jpannelviewpointsubjectLayout = new javax.swing.GroupLayout(jpannelviewpointsubject);
         jpannelviewpointsubject.setLayout(jpannelviewpointsubjectLayout);
@@ -210,7 +269,7 @@ public class frm0002 extends javax.swing.JFrame {
             .addGroup(jpannelviewpointsubjectLayout.createSequentialGroup()
                 .addComponent(labelviewpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelviewpointsubject1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbxpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
@@ -220,9 +279,9 @@ public class frm0002 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpannelviewpointsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelviewpointsubject)
-                    .addComponent(labelviewpointsubject1))
+                    .addComponent(cbxpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE))
         );
 
         jpannelviewstudentsubject.setBackground(new java.awt.Color(129, 211, 227));
@@ -233,8 +292,7 @@ public class frm0002 extends javax.swing.JFrame {
 
         jScrollPane5.setViewportView(tablestudentsubject);
 
-        labelviewstudentsubject1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        labelviewstudentsubject1.setText("Code Class ");
+        cbxstudentsubject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jpannelviewstudentsubjectLayout = new javax.swing.GroupLayout(jpannelviewstudentsubject);
         jpannelviewstudentsubject.setLayout(jpannelviewstudentsubjectLayout);
@@ -243,8 +301,8 @@ public class frm0002 extends javax.swing.JFrame {
             .addGroup(jpannelviewstudentsubjectLayout.createSequentialGroup()
                 .addComponent(labelviewstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelviewstudentsubject1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(cbxstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 715, Short.MAX_VALUE))
             .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
         jpannelviewstudentsubjectLayout.setVerticalGroup(
@@ -253,9 +311,9 @@ public class frm0002 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpannelviewstudentsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelviewstudentsubject)
-                    .addComponent(labelviewstudentsubject1))
+                    .addComponent(cbxstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelRootLayout = new javax.swing.GroupLayout(jPanelRoot);
@@ -315,6 +373,11 @@ public class frm0002 extends javax.swing.JFrame {
 
         importStudent.setBackground(new java.awt.Color(79, 142, 163));
         importStudent.setText("Import Students Class");
+        importStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importStudentActionPerformed(evt);
+            }
+        });
         File.add(importStudent);
 
         importschedules.setBackground(new java.awt.Color(79, 142, 163));
@@ -411,89 +474,7 @@ public class frm0002 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    void inittablestudentclass(){
-        
-        DefaultTableModel model= new DefaultTableModel(){
-            public boolean isCellEditable(int row, int col){
-		return false;
-            }
-        };
-        model.addColumn("STT");
-        model.addColumn("MSSV");
-        model.addColumn("FULL NAME");
-        model.addColumn("SEX");
-        model.addColumn("IDENTITY");
- 
-         
-        tablestudentclass.setModel(model);
-        tablestudentclass.setVisible(false);
-    }
-    
-    void inittablepointsubject(){
-        DefaultTableModel model= new DefaultTableModel(){
-            public boolean isCellEditable(int row, int col){
-		return false;
-            }
-        };
-        model.addColumn("STT");
-        model.addColumn("MSSV");
-        model.addColumn("FULL NAME");
-        model.addColumn("POINT MID");
-        model.addColumn("POINT FINAL");
-        model.addColumn("POINT DIFFERENCE");
-        model.addColumn("POINT SUMMARY");
-        model.addRow(new Object[]{
-            1,2,3,4,5,6,7
-        });
-         
-        tablepointsubject.setModel(model);
-        tablepointsubject.setVisible(false);
-    }
-    
-    void inittablescheduleclass(){
-        DefaultTableModel model= new DefaultTableModel(){
-            public boolean isCellEditable(int row, int col){
-		return false;
-            }
-        };
-        model.addColumn("STT");
-        model.addColumn("CODE SUBJECT");
-        model.addColumn("NAME SUBJECT");
-        model.addColumn("ROOM");
-        model.addRow(new Object[]{
-            1,2,3,4
-        });
-         
-        tablescheduleclass.setModel(model);
-        tablescheduleclass.setVisible(false);
-    }
-    
-    void initviewstudentsubject(){
-        DefaultTableModel model= new DefaultTableModel(){
-            public boolean isCellEditable(int row, int col){
-		return false;
-            }
-        };
-        model.addColumn("STT");
-        model.addColumn("MSSV");
-        model.addColumn("FULL NAME");
-        model.addColumn("SEX");
-        model.addColumn("IDENTITY");
-        model.addRow(new Object[]{
-            1,2,3,4,5
-        });
-         
-        tablestudentsubject.setModel(model);
-        tablestudentsubject.setVisible(false);
-    }
-    
-    void initalAllTable(){
-        initviewstudentsubject();
-        inittablestudentclass();
-        inittablescheduleclass();
-        inittablepointsubject();
-    }
+   
     
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
 
@@ -525,7 +506,7 @@ public class frm0002 extends javax.swing.JFrame {
 //                    Logger.getLogger(frm0003.class.getName()).log(Level.SEVERE, null, ex);
 //                }
 //            }
-            
+                     
             
     }//GEN-LAST:event_formWindowActivated
 
@@ -561,10 +542,13 @@ public class frm0002 extends javax.swing.JFrame {
 
     private void viewstudentclassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewstudentclassMouseClicked
         // TODO add your handling code here:
+
         jpannelviewpointsubject.setVisible(false);
         jpannelviewscheduleclass.setVisible(false);
         jpannelviewstudentclass.setVisible(true);
         jpannelviewstudentsubject.setVisible(false);
+
+        
     }//GEN-LAST:event_viewstudentclassMouseClicked
 
     private void viewscheduleclassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewscheduleclassMouseClicked
@@ -588,21 +572,7 @@ public class frm0002 extends javax.swing.JFrame {
         jpannelviewpointsubject.setVisible(false);
         jpannelviewscheduleclass.setVisible(false);
         jpannelviewstudentclass.setVisible(true);
-        jpannelviewstudentsubject.setVisible(false);
-          
-       
-   
-        DefaultTableModel models = (DefaultTableModel) tablestudentclass.getModel();
-        Vector row= new Vector();
-        row.add(1);
-        row.add(2);
-         row.add(1);
-        row.add(2);
-         row.add(1);
-        
-        models.addRow(row);
-         
-         
+        jpannelviewstudentsubject.setVisible(false);    
     }//GEN-LAST:event_viewstudentclassActionPerformed
 
     private void viewpointsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewpointsubjectActionPerformed
@@ -629,6 +599,57 @@ public class frm0002 extends javax.swing.JFrame {
         jpannelviewstudentsubject.setVisible(true);
     }//GEN-LAST:event_viewstudentsubjectActionPerformed
 
+    private void importStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importStudentActionPerformed
+        // TODO add your handling code here:
+        JFileChooser jFileChooserImport= new JFileChooser();
+        int status = jFileChooserImport.showSaveDialog(jFileChooserImport);
+        boolean statusimporterr=false;
+        if (status == JFileChooser.APPROVE_OPTION) {
+          File selectedFile = jFileChooserImport.getSelectedFile();
+          System.out.println(selectedFile.getPath());
+           Frm0002BLL bll0002= new Frm0002BLL();
+           statusimporterr =bll0002.importStudentsClass(selectedFile.getPath());
+           if(statusimporterr){
+               //error
+           }else{
+               // view student class
+           }
+        } else if (status == JFileChooser.CANCEL_OPTION) {
+            jFileChooserImport.cancelSelection();
+        }
+    }//GEN-LAST:event_importStudentActionPerformed
+
+    private void cbxstudentclassItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxstudentclassItemStateChanged
+        // TODO add your handling code here:
+        if(cbxstudentclass.getSelectedItem() !=  null){
+            String nameclass=cbxstudentclass.getSelectedItem().toString();
+            Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
+            while(in.hasNext()){
+                ClassRoomDTO ob=in.next(); 
+                if(ob.getNameroom().equals(nameclass)){
+                   getIntoTableStudentClass(ob.getCollectionSTU());
+                   jScrollPane2.getVerticalScrollBar().setValue(0);
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_cbxstudentclassItemStateChanged
+
+    private void cbxscheduleclassItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxscheduleclassItemStateChanged
+        // TODO add your handling code here:
+        if(cbxscheduleclass.getSelectedItem() !=  null){
+            String nameclass=cbxscheduleclass.getSelectedItem().toString();
+            Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
+            while(in.hasNext()){
+                ClassRoomDTO ob=in.next(); 
+                if(ob.getNameroom().equals(nameclass)){
+                   getIntoTableScheduleClass(ob.getCollectionSUB());
+                }
+            }
+        }
+    }//GEN-LAST:event_cbxscheduleclassItemStateChanged
+
+    
     /**
      * @param args the command line arguments
      */
@@ -673,6 +694,10 @@ public class frm0002 extends javax.swing.JFrame {
     private javax.swing.JMenu View;
     private javax.swing.JButton btnchangepass;
     private javax.swing.JButton btnlogout;
+    private javax.swing.JComboBox<String> cbxpointsubject;
+    private javax.swing.JComboBox<String> cbxscheduleclass;
+    private javax.swing.JComboBox<String> cbxstudentclass;
+    private javax.swing.JComboBox<String> cbxstudentsubject;
     private javax.swing.JMenuItem importStudent;
     private javax.swing.JMenuItem importpoint;
     private javax.swing.JMenuItem importschedules;
@@ -687,13 +712,9 @@ public class frm0002 extends javax.swing.JFrame {
     private javax.swing.JPanel jpannelviewstudentclass;
     private javax.swing.JPanel jpannelviewstudentsubject;
     private javax.swing.JLabel labelviewpointsubject;
-    private javax.swing.JLabel labelviewpointsubject1;
     private javax.swing.JLabel labelviewscheduleclass;
-    private javax.swing.JLabel labelviewscheduleclass1;
     private javax.swing.JLabel labelviewstudentclass;
-    private javax.swing.JLabel labelviewstudentclass1;
     private javax.swing.JLabel labelviewstudentsubject;
-    private javax.swing.JLabel labelviewstudentsubject1;
     private javax.swing.JMenuItem managapointstudent;
     private javax.swing.JMenuItem managastudentsubject;
     private javax.swing.JMenuItem managestudentclass;
@@ -712,14 +733,63 @@ public class frm0002 extends javax.swing.JFrame {
     /**
      * @return the accurent
      */
-    public AccountSchool getAccurent() {
+    public AccountSchoolDTO getAccurent() {
         return accurent;
     }
 
     /**
      * @param accurent the accurent to set
      */
-    public void setAccurent(AccountSchool accurent) {
+    public void setAccurent(AccountSchoolDTO accurent) {
         this.accurent = accurent;
+    }
+    
+    void createContent(){
+        createCombox();
+    }
+
+    void createCombox(){
+        // set student class, scheduler class
+        Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
+        cbxstudentclass.removeAllItems();
+        cbxscheduleclass.removeAllItems();
+        while(in.hasNext()){
+            ClassRoomDTO ob=in.next(); 
+            cbxstudentclass.addItem(ob.getNameroom());
+            cbxscheduleclass.addItem(ob.getNameroom());
+        }
+    }
+    
+    void getIntoTableStudentClass(LinkedList<StudentsDTO> col){
+        DefaultTableModel model=(DefaultTableModel) tablestudentclass.getModel();
+        model.setRowCount(0);
+        Iterator<StudentsDTO> in= col.iterator();
+        int i=0;
+        while(in.hasNext()){
+            StudentsDTO stu=in.next();
+            Vector vt=new Vector();
+            vt.add(i++);
+            vt.add(stu.getMssv());
+            vt.add(stu.getName());
+            vt.add(stu.getSex());
+            vt.add(stu.getIdentity());
+            model.addRow(vt);
+        }
+    }
+    
+    void getIntoTableScheduleClass(LinkedList<SubjectsDTO> col){
+//         DefaultTableModel model=(DefaultTableModel) tablescheduleclass.getModel();
+//        model.setRowCount(0);
+//        Iterator<Subjects> in= col.iterator();
+//        int i=0;
+//        while(in.hasNext()){
+//            SubjectsDTO stu=in.next();
+//            Vector vt=new Vector();
+//            vt.add(i++);
+//            vt.add(stu.getCodesubject());
+//            vt.add(stu.getNamesubject());
+//            vt.add(stu.getNameroomclass());
+//            model.addRow(vt);
+//        }
     }
 }

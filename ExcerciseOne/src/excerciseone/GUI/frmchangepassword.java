@@ -6,7 +6,7 @@
 package excerciseone.GUI;
 
 import excerciseone.BLL.Common;
-import excerciseone.DTO.AccountSchool;
+import excerciseone.DTO.AccountSchoolDTO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
@@ -18,7 +18,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class frmchangepassword extends javax.swing.JFrame {
     
-    private AccountSchool accountschool;
+    private AccountSchoolDTO accountschool;
     private frm0002 frm0002s;
     private frm0003 frm0003s;
     
@@ -39,7 +39,6 @@ public class frmchangepassword extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenu1 = new javax.swing.JMenu();
         jPanelChangepass1 = new javax.swing.JPanel();
         txtpassnew = new java.awt.TextField();
         jLabel5 = new javax.swing.JLabel();
@@ -50,8 +49,6 @@ public class frmchangepassword extends javax.swing.JFrame {
         txtpasswordold = new java.awt.TextField();
         btnsave = new javax.swing.JButton();
         messageChangepass = new javax.swing.JLabel();
-
-        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Change Password");
@@ -148,7 +145,7 @@ public class frmchangepassword extends javax.swing.JFrame {
                             .addComponent(txtpassnew, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(messageChangepass, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtpasswordold, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanelChangepass1Layout.setVerticalGroup(
             jPanelChangepass1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,7 +320,6 @@ public class frmchangepassword extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanelChangepass1;
     private javax.swing.JLabel messageChangepass;
     private java.awt.TextField txtpassagain;
@@ -334,14 +330,14 @@ public class frmchangepassword extends javax.swing.JFrame {
     /**
      * @return the accountschool
      */
-    public AccountSchool getAccountschool() {
+    public AccountSchoolDTO getAccountschool() {
         return accountschool;
     }
 
     /**
      * @param accountschool the accountschool to set
      */
-    public void setAccountschool(AccountSchool accountschool) {
+    public void setAccountschool(AccountSchoolDTO accountschool) {
         this.accountschool = accountschool;
     }
 

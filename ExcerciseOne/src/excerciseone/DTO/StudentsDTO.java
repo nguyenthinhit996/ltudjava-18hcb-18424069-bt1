@@ -9,20 +9,20 @@ package excerciseone.DTO;
  *
  * @author peter
  */
-public class Students {
+public class StudentsDTO {
     private String mssv;
     private String name;
     private String sex;
     private Long identity;
     
-    public Students(String mssv,String n,String se,Long id){
+    public StudentsDTO(String mssv,String n,String se,Long id){
         this.mssv=mssv;
         this.name=n;
         this.sex=se;
         this.identity=id;
     }
     
-    public Students(String []ds){
+    public StudentsDTO(String []ds){
         if(ds.length == 4){
          this.mssv=ds[0];
          this.name=ds[1];
@@ -86,6 +86,6 @@ public class Students {
     public void setIdentity(Long identity) {
         this.identity = identity;
     }
-    
+   
     
 }

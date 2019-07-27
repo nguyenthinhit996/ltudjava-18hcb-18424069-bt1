@@ -11,12 +11,12 @@ import java.util.LinkedList;
  *
  * @author peter
  */
-public class ClassRoom {
+public class ClassRoomDTO {
     private String nameroom;
-    private LinkedList<Students> collectionSTU;
-    private LinkedList<Subjects> collectionSUB;
+    private LinkedList<StudentsDTO> collectionSTU;
+    private LinkedList<SubjectsDTO> collectionSUB;
     
-    public ClassRoom(String na,LinkedList<Students> costu, LinkedList<Subjects> cosub){
+    public ClassRoomDTO(String na,LinkedList<StudentsDTO> costu, LinkedList<SubjectsDTO> cosub){
         this.nameroom=na;
         this.collectionSTU=costu;
         this.collectionSUB=cosub;
@@ -39,28 +39,28 @@ public class ClassRoom {
     /**
      * @return the collectionSTU
      */
-    public LinkedList<Students> getCollectionSTU() {
+    public LinkedList<StudentsDTO> getCollectionSTU() {
         return collectionSTU;
     }
 
     /**
      * @param collectionSTU the collectionSTU to set
      */
-    public void setCollectionSTU(LinkedList<Students> collectionSTU) {
+    public void setCollectionSTU(LinkedList<StudentsDTO> collectionSTU) {
         this.collectionSTU = collectionSTU;
     }
 
     /**
      * @return the collectionSUB
      */
-    public LinkedList<Subjects> getCollectionSUB() {
+    public LinkedList<SubjectsDTO> getCollectionSUB() {
         return collectionSUB;
     }
 
     /**
      * @param collectionSUB the collectionSUB to set
      */
-    public void setCollectionSUB(LinkedList<Subjects> collectionSUB) {
+    public void setCollectionSUB(LinkedList<SubjectsDTO> collectionSUB) {
         this.collectionSUB = collectionSUB;
     }
     

@@ -5,7 +5,7 @@
  */
 package excerciseone.DAL;
 
-import excerciseone.DTO.AccountSchool;
+import excerciseone.DTO.AccountSchoolDTO;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -21,8 +21,8 @@ import java.util.logging.Logger;
 public class AccountSchoolDAL {
    
     
-     public LinkedList<AccountSchool>getAllAccount(){
-        LinkedList<AccountSchool> col = new LinkedList<>();
+     public LinkedList<AccountSchoolDTO>getAllAccount(){
+        LinkedList<AccountSchoolDTO> col = new LinkedList<>();
         try {
             FileDAL fileDAL= new FileDAL("account/accountschool.txt");
             BufferedReader br=fileDAL.createBufferedReader();
@@ -30,7 +30,7 @@ public class AccountSchoolDAL {
             while((strcurrent=br.readLine()) != null){
                 String[] arrstr=strcurrent.split(",");
                 if(arrstr.length == 4){
-                    AccountSchool news= new AccountSchool(arrstr[0],arrstr[1],arrstr[2],Integer.valueOf(arrstr[3]));
+                    AccountSchoolDTO news= new AccountSchoolDTO(arrstr[0],arrstr[1],arrstr[2],Integer.valueOf(arrstr[3]));
                     col.add(news);
                 }else{
                     return null;
@@ -42,15 +42,15 @@ public class AccountSchoolDAL {
         return col;
     }
    
-    public void writeAllAccount(LinkedList<AccountSchool> col){
+    public void writeAllAccount(LinkedList<AccountSchoolDTO> col){
          try {
              FileDAL fileDal= new FileDAL("account/accountschool.txt");
              BufferedWriter bufferedWriter=fileDal.createBufferwriter();
              // detele content file
              bufferedWriter.write("");
-             Iterator<AccountSchool> in=col.iterator();
+             Iterator<AccountSchoolDTO> in=col.iterator();
              while(in.hasNext()){
-                 AccountSchool a=in.next();
+                 AccountSchoolDTO a=in.next();
                  bufferedWriter.append(a.tostring());
                  bufferedWriter.newLine();
              }

@@ -6,11 +6,13 @@
 package excerciseone.BLL;
 
 import excerciseone.DAL.AccountSchoolDAL;
-import excerciseone.DTO.AccountSchool;
+import excerciseone.DTO.AccountSchoolDTO;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.regex.Matcher;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -25,11 +27,11 @@ public class Common {
     }
     
      
-      public boolean changePassword(AccountSchool acc,String passold,String passnew){
+      public boolean changePassword(AccountSchoolDTO acc,String passold,String passnew){
         if(StringUtils.isNotBlank(passold) && StringUtils.isNotBlank(passnew)){
             if(acc.getPassword().equals(passold)){
                 AccountSchoolDAL accDAL= new AccountSchoolDAL();
-                LinkedList<AccountSchool> in=accDAL.getAllAccount();
+                LinkedList<AccountSchoolDTO> in=accDAL.getAllAccount();
                 for(int i=0;i<in.size();i++){
                     if(acc.getNamelogin().equals(in.get(i).getNamelogin()) 
                             && acc.getPassword().equals(in.get(i).getPassword())){
@@ -44,5 +46,19 @@ public class Common {
         return false;
     }
     
+    public static boolean isSubjectClass(String str){
+        String regex="^.*_.*$";
+        return str.matches(regex);
+    }
+    
+    public static String getNameExceptExtension(String str){
+       return str.replace(".txt","");
+    }
+    public static String getNameExceptHyphen(String str){
+       return str.replaceAll("_.*$", "");
+    }
+    
+    
+     
     
 }

@@ -9,20 +9,20 @@ package excerciseone.DTO;
  *
  * @author peter
  */
-public class AccountSchool {
+public class AccountSchoolDTO {
     private String nameshow;
     private String namelogin;
     private String password;
     private int status;
 
-    public AccountSchool(String nshow,String namelogin,String pass, int Sta){
+    public AccountSchoolDTO(String nshow,String namelogin,String pass, int Sta){
         this.nameshow=nshow;
         this.namelogin=namelogin;
         this.password=pass;
         this.status=Sta;
     }
     
-    public AccountSchool(String [] ds){
+    public AccountSchoolDTO(String [] ds){
         if(ds.length == 4){
             this.nameshow=ds[0];
             this.namelogin=ds[1];
