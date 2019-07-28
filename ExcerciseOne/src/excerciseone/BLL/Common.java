@@ -6,13 +6,13 @@
 package excerciseone.BLL;
 
 import excerciseone.DAL.AccountSchoolDAL;
+import excerciseone.DAL.FileDAL;
 import excerciseone.DTO.AccountSchoolDTO;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.regex.Matcher;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -57,6 +57,12 @@ public class Common {
     public static String getNameExceptHyphen(String str){
        return str.replaceAll("_.*$", "");
     }
+    
+    public static String getNameClass(String str){
+        String ne=getNameExceptExtension(str);
+        return getNameExceptHyphen(ne);
+    }
+    
     
     
      

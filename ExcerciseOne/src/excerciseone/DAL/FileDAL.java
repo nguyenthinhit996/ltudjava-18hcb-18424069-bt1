@@ -5,6 +5,7 @@
  */
 package excerciseone.DAL;
 
+import excerciseone.BLL.Common;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -87,7 +88,30 @@ public class FileDAL{
           return sy;
       }
      
+      static boolean checkFileExistInSystem(String namefile){
+        String namefi=Common.getNameClass(namefile);
+        ArrayList<String> colYear= FileDAL.getAllSchoolYearExists();
+        for(String di:colYear){
+            ArrayList<String> colClass= FileDAL.getAllClassExists(di);
+            if(colClass.contains(namefi)){
+                return true;
+            }
+        }
+        return false;
+    }
 
+    boolean createDirectory(String namedir){
+        String namesclass=namedir;
+        String getyear=namedir.replaceAll("[a-zA-Z]$", namedir);
+        ArrayList<String> colYear= FileDAL.getAllSchoolYearExists();
+        for(String di:colYear){
+            if(di.indexOf(getyear)>=0){
+             String path="repository"+File.separator+di+File.separator+namesclass;
+              return new File(path).mkdir();
+            }
+        }
+        return false;
+    }
     /**
      * @return the path
      */

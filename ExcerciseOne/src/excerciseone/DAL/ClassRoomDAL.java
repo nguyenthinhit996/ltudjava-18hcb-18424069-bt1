@@ -72,4 +72,41 @@ public class ClassRoomDAL {
 //        ClassRoomDAL a= new ClassRoomDAL();
 //        a.getAllClassRoom();
 //    }
+    ClassRoomDTO importColStudentClass(String path){
+        FileDAL filedal= new FileDAL(path);
+        String nameclass="";
+        LinkedList<StudentsDTO> colstu=new LinkedList<>();
+        BufferedReader buff= filedal.createBufferedReader();
+        if(buff != null){
+            try {
+                String line;
+                nameclass=buff.readLine();
+                while((line=buff.readLine())!=null){
+                    String [] content=line.split(",");
+                    if(content.length >=4){
+                        if(StringUtils.isNumeric(content[3])){
+                         StudentsDTO student= new StudentsDTO(content[0], content[1],content[2],Long.valueOf(content[3]));   
+                         colstu.add(student);
+                        }
+                    }
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(ClassRoomDAL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            System.out.println("Error get bufferedReder "+ this.getClass().toString());
+            return null;
+        }
+        return new ClassRoomDTO(nameclass, colstu, null);
+    }
+    
+    void writeClassRoom(ClassRoomDTO classroom){
+        // khong co lop thi tao ra thu muc lop
+        if(!FileDAL.checkFileExistInSystem(classroom.getNameroom())){
+            // tao thu muc lop
+        }
+        // get tat ca len , kiem tra mssv neu khong co thi them vao classroomdto xong luu xuong lai ok
+        
+    }
+    
 }
