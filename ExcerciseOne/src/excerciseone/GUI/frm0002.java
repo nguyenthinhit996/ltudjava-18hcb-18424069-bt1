@@ -7,6 +7,7 @@ package excerciseone.GUI;
 
 import excerciseone.BLL.Frm0002BLL;
 import excerciseone.BLL.Common;
+import excerciseone.DAL.FileDAL;
 import excerciseone.DTO.AccountSchoolDTO;
 import excerciseone.DTO.ClassRoomDTO;
 import excerciseone.DTO.StudentsDTO;
@@ -14,8 +15,13 @@ import excerciseone.DTO.SubjectsDTO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Vector;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -184,6 +190,11 @@ public class frm0002 extends javax.swing.JFrame {
         labelviewstudentclass.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         labelviewstudentclass.setText("All Students Class:");
 
+        tablestudentclass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablestudentclassMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablestudentclass);
 
         cbxstudentclass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -198,8 +209,8 @@ public class frm0002 extends javax.swing.JFrame {
         jpannelviewstudentclassLayout.setHorizontalGroup(
             jpannelviewstudentclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpannelviewstudentclassLayout.createSequentialGroup()
-                .addComponent(labelviewstudentclass, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addComponent(labelviewstudentclass, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
                 .addComponent(cbxstudentclass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
@@ -235,8 +246,8 @@ public class frm0002 extends javax.swing.JFrame {
         jpannelviewscheduleclassLayout.setHorizontalGroup(
             jpannelviewscheduleclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpannelviewscheduleclassLayout.createSequentialGroup()
-                .addComponent(labelviewscheduleclass, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
+                .addComponent(labelviewscheduleclass, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addComponent(cbxscheduleclass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
@@ -267,8 +278,8 @@ public class frm0002 extends javax.swing.JFrame {
         jpannelviewpointsubjectLayout.setHorizontalGroup(
             jpannelviewpointsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpannelviewpointsubjectLayout.createSequentialGroup()
-                .addComponent(labelviewpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelviewpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addComponent(cbxpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
@@ -281,7 +292,7 @@ public class frm0002 extends javax.swing.JFrame {
                     .addComponent(labelviewpointsubject)
                     .addComponent(cbxpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
         );
 
         jpannelviewstudentsubject.setBackground(new java.awt.Color(129, 211, 227));
@@ -299,10 +310,10 @@ public class frm0002 extends javax.swing.JFrame {
         jpannelviewstudentsubjectLayout.setHorizontalGroup(
             jpannelviewstudentsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpannelviewstudentsubjectLayout.createSequentialGroup()
-                .addComponent(labelviewstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelviewstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addComponent(cbxstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 715, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
         jpannelviewstudentsubjectLayout.setVerticalGroup(
@@ -313,7 +324,7 @@ public class frm0002 extends javax.swing.JFrame {
                     .addComponent(labelviewstudentsubject)
                     .addComponent(cbxstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelRootLayout = new javax.swing.GroupLayout(jPanelRoot);
@@ -382,6 +393,11 @@ public class frm0002 extends javax.swing.JFrame {
 
         importschedules.setBackground(new java.awt.Color(79, 142, 163));
         importschedules.setText("Import Shedules Class");
+        importschedules.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importschedulesActionPerformed(evt);
+            }
+        });
         File.add(importschedules);
 
         importpoint.setText("Import Point Subject");
@@ -394,6 +410,11 @@ public class frm0002 extends javax.swing.JFrame {
         Edit.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
 
         managestudentclass.setText("Manage Students Class");
+        managestudentclass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                managestudentclassActionPerformed(evt);
+            }
+        });
         Edit.add(managestudentclass);
 
         managastudentsubject.setText("Manage Student Subject");
@@ -510,14 +531,6 @@ public class frm0002 extends javax.swing.JFrame {
             
     }//GEN-LAST:event_formWindowActivated
 
-    private void viewscheduleclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewscheduleclassActionPerformed
-        // TODO add your handling code here:
-        jpannelviewpointsubject.setVisible(false);
-        jpannelviewscheduleclass.setVisible(true);
-        jpannelviewstudentclass.setVisible(false);
-        jpannelviewstudentsubject.setVisible(false);
-    }//GEN-LAST:event_viewscheduleclassActionPerformed
-
     private void btnlogoutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlogoutMousePressed
         // TODO add your handling code here:
         this.setEnabled(false);
@@ -541,78 +554,76 @@ public class frm0002 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnchangepassMouseClicked
 
     private void viewstudentclassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewstudentclassMouseClicked
-        // TODO add your handling code here:
-
-        jpannelviewpointsubject.setVisible(false);
-        jpannelviewscheduleclass.setVisible(false);
-        jpannelviewstudentclass.setVisible(true);
-        jpannelviewstudentsubject.setVisible(false);
-
-        
+        // TODO add your handling code here    
     }//GEN-LAST:event_viewstudentclassMouseClicked
 
     private void viewscheduleclassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewscheduleclassMouseClicked
         // TODO add your handling code here:
-        jpannelviewpointsubject.setVisible(false);
-        jpannelviewscheduleclass.setVisible(true);
-        jpannelviewstudentclass.setVisible(false);
-        jpannelviewstudentsubject.setVisible(false);
+         
     }//GEN-LAST:event_viewscheduleclassMouseClicked
 
     private void viewpointsubjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewpointsubjectMouseClicked
         // TODO add your handling code here:
-        jpannelviewpointsubject.setVisible(true);
-        jpannelviewscheduleclass.setVisible(false);
-        jpannelviewstudentclass.setVisible(false);
-        jpannelviewstudentsubject.setVisible(false);
+//         createCombox();
+//        jpannelviewpointsubject.setVisible(true);
+//        jpannelviewscheduleclass.setVisible(false);
+//        jpannelviewstudentclass.setVisible(false);
+//        jpannelviewstudentsubject.setVisible(false);
     }//GEN-LAST:event_viewpointsubjectMouseClicked
-
-    private void viewstudentclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewstudentclassActionPerformed
-        // TODO add your handling code here:
-        jpannelviewpointsubject.setVisible(false);
-        jpannelviewscheduleclass.setVisible(false);
-        jpannelviewstudentclass.setVisible(true);
-        jpannelviewstudentsubject.setVisible(false);    
-    }//GEN-LAST:event_viewstudentclassActionPerformed
-
-    private void viewpointsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewpointsubjectActionPerformed
-        // TODO add your handling code here:
-        jpannelviewpointsubject.setVisible(true);
-        jpannelviewscheduleclass.setVisible(false);
-        jpannelviewstudentclass.setVisible(false);
-        jpannelviewstudentsubject.setVisible(false);
-    }//GEN-LAST:event_viewpointsubjectActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
+          
         jpannelviewpointsubject.setVisible(false);
         jpannelviewscheduleclass.setVisible(false);
         jpannelviewstudentclass.setVisible(false);
         jpannelviewstudentsubject.setVisible(false);
     }//GEN-LAST:event_formComponentShown
 
-    private void viewstudentsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewstudentsubjectActionPerformed
-        // TODO add your handling code here:
-        jpannelviewpointsubject.setVisible(false);
-        jpannelviewscheduleclass.setVisible(false);
-        jpannelviewstudentclass.setVisible(false);
-        jpannelviewstudentsubject.setVisible(true);
-    }//GEN-LAST:event_viewstudentsubjectActionPerformed
-
     private void importStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importStudentActionPerformed
         // TODO add your handling code here:
         JFileChooser jFileChooserImport= new JFileChooser();
+        jFileChooserImport.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        jFileChooserImport.addChoosableFileFilter(FileDAL.myFileFilter());
+        jFileChooserImport.setAcceptAllFileFilterUsed(true);
+        jFileChooserImport.setApproveButtonText("Open");
         int status = jFileChooserImport.showSaveDialog(jFileChooserImport);
+        
         boolean statusimporterr=false;
         if (status == JFileChooser.APPROVE_OPTION) {
           File selectedFile = jFileChooserImport.getSelectedFile();
           System.out.println(selectedFile.getPath());
+          if(!selectedFile.getName().contains(".csv")){
+               //error
+               frmerror er= new frmerror();
+               er.setStrError(" Has Error when import Students CLass !");
+               er.setVisible(true);
+               return ;
+           }
            Frm0002BLL bll0002= new Frm0002BLL();
            statusimporterr =bll0002.importStudentsClass(selectedFile.getPath());
            if(statusimporterr){
                //error
+               frmerror er= new frmerror();
+               er.setStrError(" Has Error when import Students CLass !");
+               er.setVisible(true);
            }else{
                // view student class
+               Frm0002BLL frm0002bll = new Frm0002BLL();
+               Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
+               cbxstudentclass.removeAllItems();
+               while(in.hasNext()){
+                    ClassRoomDTO ob=in.next();                   
+                    getIntoTableStudentClass(ob.getCollectionSTU());
+                    cbxstudentclass.addItem(ob.getNameroom());
+               }
+               //All Students Class:
+               labelviewstudentclass.setText("Students is Imported:");
+                 jScrollPane2.getVerticalScrollBar().setValue(0);
+                    jpannelviewpointsubject.setVisible(false);
+                    jpannelviewscheduleclass.setVisible(false);
+                    jpannelviewstudentclass.setVisible(true);
+                    jpannelviewstudentsubject.setVisible(false);
            }
         } else if (status == JFileChooser.CANCEL_OPTION) {
             jFileChooserImport.cancelSelection();
@@ -648,6 +659,118 @@ public class frm0002 extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_cbxscheduleclassItemStateChanged
+
+    private void viewstudentclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewstudentclassActionPerformed
+        // TODO add your handling code here:
+         createCombox();
+         labelviewstudentclass.setText("All Students Class:");
+        jpannelviewpointsubject.setVisible(false);
+        jpannelviewscheduleclass.setVisible(false);
+        jpannelviewstudentclass.setVisible(true);
+        jpannelviewstudentsubject.setVisible(false);
+    }//GEN-LAST:event_viewstudentclassActionPerformed
+
+    private void viewscheduleclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewscheduleclassActionPerformed
+        // TODO add your handling code here:
+        createCombox();
+        labelviewscheduleclass.setText("SChedule Of Class:");
+        jpannelviewpointsubject.setVisible(false);
+        jpannelviewscheduleclass.setVisible(true);
+        jpannelviewstudentclass.setVisible(false);
+        jpannelviewstudentsubject.setVisible(false);
+    }//GEN-LAST:event_viewscheduleclassActionPerformed
+
+    private void viewstudentsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewstudentsubjectActionPerformed
+        // TODO add your handling code here:
+        createCombox();
+        jpannelviewpointsubject.setVisible(false);
+        jpannelviewscheduleclass.setVisible(false);
+        jpannelviewstudentclass.setVisible(false);
+        jpannelviewstudentsubject.setVisible(true);
+    }//GEN-LAST:event_viewstudentsubjectActionPerformed
+
+    private void viewpointsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewpointsubjectActionPerformed
+        // TODO add your handling code here:
+         createCombox();
+        jpannelviewpointsubject.setVisible(true);
+        jpannelviewscheduleclass.setVisible(true);
+        jpannelviewstudentclass.setVisible(false);
+        jpannelviewstudentsubject.setVisible(false);
+    }//GEN-LAST:event_viewpointsubjectActionPerformed
+
+    
+    private void managestudentclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managestudentclassActionPerformed
+        // TODO add your handling code here:
+        frmaddstudents addstudent=new frmaddstudents();
+        
+        Frm0002BLL.getAllClassRoom();
+        LinkedList<ClassRoomDTO> colcr=Frm0002BLL.getColClassRoom();
+        Iterator<ClassRoomDTO> in=colcr.iterator();
+        Map<String,String> col=new HashMap<>();
+        while(in.hasNext()){
+            ClassRoomDTO i= in.next();
+            Collections.sort(i.getCollectionSTU());
+            long l=Long.valueOf(i.getCollectionSTU().getLast().getMssv()) +1;
+            col.put(i.getNameroom(), String.valueOf(l));
+        }
+        addstudent.setMapmaxmssvclass(col);
+        addstudent.setVisible(true);
+    }//GEN-LAST:event_managestudentclassActionPerformed
+
+    private void tablestudentclassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablestudentclassMouseClicked
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_tablestudentclassMouseClicked
+
+    private void importschedulesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importschedulesActionPerformed
+        // TODO add your handling code here:
+        JFileChooser jFileChooserImport= new JFileChooser();
+        jFileChooserImport.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        jFileChooserImport.addChoosableFileFilter(FileDAL.myFileFilter());
+        jFileChooserImport.setAcceptAllFileFilterUsed(true);
+        jFileChooserImport.setApproveButtonText("Open");
+        int status = jFileChooserImport.showSaveDialog(jFileChooserImport);
+        
+        boolean statusimporterr=false;
+        if (status == JFileChooser.APPROVE_OPTION) {
+          File selectedFile = jFileChooserImport.getSelectedFile();
+          System.out.println(selectedFile.getPath());
+          if(!selectedFile.getName().contains(".csv")){
+               //error
+               frmerror er= new frmerror();
+               er.setStrError(" Has Error when import Students CLass !");
+               er.setVisible(true);
+               return ;
+           }
+           Frm0002BLL bll0002= new Frm0002BLL();
+           statusimporterr =bll0002.importScheduleClass(selectedFile.getPath());
+           if(statusimporterr){
+               //error
+               frmerror er= new frmerror();
+               er.setStrError(" Has Error when import Schedule CLass !");
+               er.setVisible(true);
+           }else{
+               // view student class
+               Frm0002BLL frm0002bll = new Frm0002BLL();
+               Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
+               cbxscheduleclass.removeAllItems();
+               while(in.hasNext()){
+                    ClassRoomDTO ob=in.next();                   
+                    getIntoTableStudentClass(ob.getCollectionSTU());
+                    cbxscheduleclass.addItem(ob.getNameroom());
+               }
+               //All Students Class:
+               labelviewscheduleclass.setText("SChedule is Imported:");
+                 jScrollPane2.getVerticalScrollBar().setValue(0);
+                    jpannelviewpointsubject.setVisible(false);
+                    jpannelviewscheduleclass.setVisible(true);
+                    jpannelviewstudentclass.setVisible(false);
+                    jpannelviewstudentsubject.setVisible(false);
+           }
+        } else if (status == JFileChooser.CANCEL_OPTION) {
+            jFileChooserImport.cancelSelection();
+        }
+    }//GEN-LAST:event_importschedulesActionPerformed
 
     
     /**
@@ -750,6 +873,7 @@ public class frm0002 extends javax.swing.JFrame {
 
     void createCombox(){
         // set student class, scheduler class
+        Frm0002BLL.getAllClassRoom();
         Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
         cbxstudentclass.removeAllItems();
         cbxscheduleclass.removeAllItems();
@@ -764,7 +888,7 @@ public class frm0002 extends javax.swing.JFrame {
         DefaultTableModel model=(DefaultTableModel) tablestudentclass.getModel();
         model.setRowCount(0);
         Iterator<StudentsDTO> in= col.iterator();
-        int i=0;
+        int i=1;
         while(in.hasNext()){
             StudentsDTO stu=in.next();
             Vector vt=new Vector();
@@ -778,6 +902,25 @@ public class frm0002 extends javax.swing.JFrame {
     }
     
     void getIntoTableScheduleClass(LinkedList<SubjectsDTO> col){
+        DefaultTableModel model=(DefaultTableModel) tablescheduleclass.getModel();
+        model.setRowCount(0);
+        if(col == null){
+            return;
+        }
+        Iterator<SubjectsDTO> in= col.iterator();
+        int i=1;
+        while(in.hasNext()){
+            SubjectsDTO stu=in.next();
+            Vector vt=new Vector();
+            vt.add(i++);
+            vt.add(stu.getCodesubject());
+            vt.add(stu.getNamesubject());
+            vt.add(stu.getRoomstudy());
+            model.addRow(vt);
+        }
+    }
+    
+//    void getIntoTableScheduleClass(LinkedList<SubjectsDTO> col){
 //         DefaultTableModel model=(DefaultTableModel) tablescheduleclass.getModel();
 //        model.setRowCount(0);
 //        Iterator<Subjects> in= col.iterator();
@@ -791,5 +934,5 @@ public class frm0002 extends javax.swing.JFrame {
 //            vt.add(stu.getNameroomclass());
 //            model.addRow(vt);
 //        }
-    }
+//    }
 }

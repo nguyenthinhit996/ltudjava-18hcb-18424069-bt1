@@ -9,7 +9,7 @@ package excerciseone.DTO;
  *
  * @author peter
  */
-public class StudentsDTO {
+public class StudentsDTO implements Comparable<StudentsDTO>{
     private String mssv;
     private String name;
     private String sex;
@@ -87,5 +87,29 @@ public class StudentsDTO {
         this.identity = identity;
     }
    
+    public static boolean equalsStudentDTO(StudentsDTO a, StudentsDTO b){
+        if(a.identity.equals(b.identity)){
+            return true;
+        }
+        return false;
+    }
+    
+    public String toStringDTO(){
+        StringBuilder string = new StringBuilder();
+        string.append(this.getMssv());
+        string.append(",");
+        string.append(this.getName());
+        string.append(",");
+        string.append(this.getSex());
+        string.append(",");
+        string.append(this.getIdentity());
+        return string.toString();
+    }
+
+    @Override
+    public int compareTo(StudentsDTO o) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.mssv.compareTo(o.mssv);
+    }
     
 }

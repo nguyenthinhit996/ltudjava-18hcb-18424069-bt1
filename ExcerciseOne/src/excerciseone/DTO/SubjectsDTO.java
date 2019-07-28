@@ -9,13 +9,15 @@ package excerciseone.DTO;
  *
  * @author peter
  */
-public class SubjectsDTO {
+public class SubjectsDTO  {
     private String namesubject;
     private String codesubject;
+    private String roomstudy;
     
-    public SubjectsDTO(String names,String co,String narc){
-        this.namesubject=names;
-        this.codesubject=co;
+    public SubjectsDTO(String ma,String name,String ph){
+         this.codesubject=ma;
+         this.namesubject=name;
+         this.roomstudy=ph;
     }
 
     /**
@@ -46,6 +48,28 @@ public class SubjectsDTO {
         this.codesubject = codesubject;
     }
 
-    
-    
+    /**
+     * @return the roomstudy
+     */
+    public String getRoomstudy() {
+        return roomstudy;
+    }
+
+    /**
+     * @param roomstudy the roomstudy to set
+     */
+    public void setRoomstudy(String roomstudy) {
+        this.roomstudy = roomstudy;
+    }
+     
+     public String toStringDTO(){
+        StringBuilder string = new StringBuilder();
+        string.append(this.codesubject);
+        string.append(",");
+        string.append(this.namesubject);
+        string.append(",");
+        string.append(this.roomstudy);
+        return string.toString();
+    }
+  
 }

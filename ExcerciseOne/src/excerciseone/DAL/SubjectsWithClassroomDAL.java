@@ -5,14 +5,13 @@
  */
 package excerciseone.DAL;
 
-import excerciseone.BLL.Common;
 import excerciseone.DTO.StudentsDTO;
-import excerciseone.DTO.SubjectsDTO;
 import excerciseone.DTO.SubjectsWithClassroomDTO;
 import java.io.BufferedReader;
-import java.io.File;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,32 +23,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class SubjectsWithClassroomDAL {
     
-    public LinkedList<SubjectsWithClassroomDTO> getAllSubjectsWithClassroom(){
-        LinkedList<SubjectsWithClassroomDTO> colcr= new LinkedList<>();
-        ArrayList<String> colYear= FileDAL.getAllSchoolYearExists();
-        for(String di:colYear){
-            ArrayList<String> colClass= FileDAL.getAllClassExists(di);
-            for(String fi:colClass){
-               if(Common.isSubjectClass(fi)){
-                    String path="repository"+File.separator+di+File.separator+fi;
-                    System.out.print("  "+path);
-                    LinkedList<StudentsDTO> rclass=getSubjectsWithClassroomByPath(path);
-                    if(rclass == null){
-                        return null;
-                    }   
-                    //SubjectsWithClassroomDTO(String name,String codesub,
-//                    String namesub, LinkedList<StudentsDTO> colstuden,
-//                    LinkedList<StudentsWithPointDTO> colpoint ){
-                    System.out.println(Common.getNameExceptHyphen(fi));
-                    SubjectsWithClassroomDTO subjectsWithClassroom=
-                    new SubjectsWithClassroomDTO(Common.getNameExceptHyphen(fi),);
-                    
-                     
-                }
-            }
-        }
-        return colcr;
-    }
+     
     
     LinkedList<StudentsDTO> getSubjectsWithClassroomByPath(String path){
        LinkedList<StudentsDTO> colstu=new LinkedList<>();
@@ -77,8 +51,44 @@ public class SubjectsWithClassroomDAL {
         return colstu;
     }
     
-    public static void main(String [] args){
-        SubjectsWithClassroomDAL a= new SubjectsWithClassroomDAL();
-        a.getAllSubjectsWithClassroom();
+    public boolean writeSubjectWithStudent(final SubjectsWithClassroomDTO ob){
+        String filename=ob.getNameroom()+"_"+ob.getCodesubject();
+        String path=FileDAL.getPathFile(filename);
+        System.out.println("luu mon hoc vs sinh vien: "+path);
+        FileDAL filedal=new FileDAL(path);
+        BufferedWriter buff= filedal.createBufferwriter();
+        if(buff != null){
+            Iterator<StudentsDTO> colSub=ob.getCollectionstudent().iterator();
+            try {
+            while(colSub.hasNext()){
+                    StudentsDTO su=colSub.next();
+                    buff.append(su.toStringDTO());
+                    buff.newLine();
+                }
+            buff.close();
+            } catch (IOException ex) { 
+                Logger.getLogger(SubjectsWithClassroomDAL.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
+        }else{
+            return false;
+        }
+        // luu diem
+        return true;
     }
+    
+//     private String nameclass;
+//    private String codesubject;
+//    private String namesubject;
+//    private LinkedList<StudentsWithPointDTO> collectionpoint;
+//    private LinkedList<StudentsDTO> collectionstudent;
+    
+    ArrayList<String> getAllSubjectClass(){
+        
+    }
+    
+    public static LinkedList<SubjectsWithClassroomDTO> getAllSubjectOfStudnensPoint(){
+        
+    }
+    
 }

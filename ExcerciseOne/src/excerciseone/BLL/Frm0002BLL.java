@@ -6,9 +6,8 @@
 package excerciseone.BLL;
 
 import excerciseone.DAL.ClassRoomDAL;
-import excerciseone.DAL.FileDAL;
+import excerciseone.DAL.SubjectsDAL;
 import excerciseone.DTO.ClassRoomDTO;
-import java.io.BufferedReader;
 import java.util.LinkedList;
 
 /**
@@ -35,12 +34,15 @@ public class Frm0002BLL {
     }
     
     // get all class
-    static void getAllClassRoom(){   
+    public  static void getAllClassRoom(){   
         ClassRoomDAL classroomdal= new ClassRoomDAL();
-        setColClassRoom(classroomdal.getAllClassRoom());
+        if(classroomdal.getAllClassRoom()!= null){
+            setColClassRoom(classroomdal.getAllClassRoom());
+        }
+        
     }
     
-    static void getAllStudentWithClassRoom(){   
+    public static void getAllStudentWithClassRoom(){   
 //        SubjectsWithClassroomDTO classroomdal= new ClassRoomDAL();
 //        setColClassRoom(classroomdal.getAllClassRoom());
     }
@@ -48,15 +50,45 @@ public class Frm0002BLL {
     
     public boolean importStudentsClass( String importpath){
        
-        
-        // đọc file 
-        // thanh công set colClassRoom ghi vào file 
+        ClassRoomDAL classroom = new ClassRoomDAL();
+        ClassRoomDTO cr=classroom.importColStudentClass(importpath);
+        if(cr==null){
+            return true;
+        }
+        // thanh công set colClassRoom
+        colClassRoom.clear();
+        colClassRoom.add(cr);
+        // write and check error
+        if(!classroom.writeClassRoom(cr)){
+            return true;
+        }
         // error tra ve lỗi 
-        return true;
+        return false;
     }
-    public static void main(String[] args){
-        
+    
+     public boolean importScheduleClass(String strpath){
+         SubjectsDAL sub= new SubjectsDAL();
+         ClassRoomDTO clasrom=sub.importScheduleClass(strpath);
+         if(clasrom != null){
+             colClassRoom.clear();
+             colClassRoom.add(clasrom);
+             ClassRoomDAL classroom = new ClassRoomDAL();
+             if(!classroom.writeClassRoom(clasrom)){
+                 // sai la true
+                    return true;
+            }else{
+                 return false;
+             }
+         }else{
+             return true;
+         }
+     }
+    
+    public boolean writeStudentsClass(ClassRoomDTO cr){
+         ClassRoomDAL classroom = new ClassRoomDAL();
+         return classroom.writeClassRoom(cr);
     }
+     
 
     /**
      * @return the colClassRoom

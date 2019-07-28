@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -39,17 +40,19 @@ public class FileDAL{
                 return br;
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(FileDAL.class.getName()).log(Level.SEVERE, null, ex);
+                return null;
             }
         }else{
             Logger.getLogger("File not found ");
+            return null;
         }
-        return null;
     }  
     
     public BufferedWriter createBufferwriter(){
         BufferedWriter bufferedWriter= null;
         try {
             File file= new File(getPath());
+            file.createNewFile();
             bufferedWriter = new BufferedWriter(new FileWriter(file));
         } catch (IOException ex) {
             Logger.getLogger(FileDAL.class.getName()).log(Level.SEVERE, null, ex);
@@ -100,9 +103,10 @@ public class FileDAL{
         return false;
     }
 
-    boolean createDirectory(String namedir){
+    static boolean  createDirectory(String namedir){
+        boolean status=true;
         String namesclass=namedir;
-        String getyear=namedir.replaceAll("[a-zA-Z]$", namedir);
+        String getyear=namedir.replaceAll("[a-zA-Z].*$", "");
         ArrayList<String> colYear= FileDAL.getAllSchoolYearExists();
         for(String di:colYear){
             if(di.indexOf(getyear)>=0){
@@ -110,7 +114,12 @@ public class FileDAL{
               return new File(path).mkdir();
             }
         }
-        return false;
+        getyear ="20"+getyear;
+        String path="repository"+File.separator+getyear;
+        status=new File(path).mkdir();
+        path = path +File.separator+namesclass;
+        status=new File(path).mkdir();
+        return status;
     }
     /**
      * @return the path
@@ -125,5 +134,18 @@ public class FileDAL{
     public void setPath(String path) {
         this.path = path;
     }
- 
+    
+    public static String getPathFile(final String namefile){
+        String names=namefile;
+        String name2s=namefile;
+        String getyear=names.replaceAll("[a-zA-Z].*$", "");
+        getyear = "20"+getyear;  
+        return "repository"+File.separator+getyear
+        +File.separator+Common.getNameClass(name2s)+File.separator+namefile+".txt";
+    }
+    
+    public static FileNameExtensionFilter myFileFilter(){
+        
+        return new FileNameExtensionFilter("File csv","csv"); 
+    }
 }
