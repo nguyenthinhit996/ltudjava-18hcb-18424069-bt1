@@ -7,7 +7,9 @@ package excerciseone.BLL;
 
 import excerciseone.DAL.ClassRoomDAL;
 import excerciseone.DAL.SubjectsDAL;
+import excerciseone.DAL.SubjectsWithClassroomDAL;
 import excerciseone.DTO.ClassRoomDTO;
+import excerciseone.DTO.SubjectsWithClassroomDTO;
 import java.util.LinkedList;
 
 /**
@@ -16,7 +18,7 @@ import java.util.LinkedList;
  */
 public class Frm0002BLL {
     private static LinkedList<ClassRoomDTO> colClassRoom;
-    private static LinkedList<ClassRoomDTO> colStuSubject;
+    private static LinkedList<SubjectsWithClassroomDTO> colSubPointStuent;
     
 //    public static void main(String[] args){
 //       FileDAL.getAllSchoolYearExists().forEach((ele)->{
@@ -31,6 +33,7 @@ public class Frm0002BLL {
     
     static {
         getAllClassRoom();
+        getAllSubPointStu();
     }
     
     // get all class
@@ -38,6 +41,15 @@ public class Frm0002BLL {
         ClassRoomDAL classroomdal= new ClassRoomDAL();
         if(classroomdal.getAllClassRoom()!= null){
             setColClassRoom(classroomdal.getAllClassRoom());
+        }
+        
+    }
+    
+    public  static void getAllSubPointStu(){   
+         SubjectsWithClassroomDAL file= new SubjectsWithClassroomDAL();
+         LinkedList<SubjectsWithClassroomDTO> ds=file.getAllSubjectOfStudentsPoint();
+        if(ds!= null){
+             setColSubPointStuent(ds);
         }
         
     }
@@ -102,6 +114,20 @@ public class Frm0002BLL {
      */
     public static void setColClassRoom(LinkedList<ClassRoomDTO> aColClassRoom) {
         colClassRoom = aColClassRoom;
+    }
+
+    /**
+     * @return the colSubPointStuent
+     */
+    public static LinkedList<SubjectsWithClassroomDTO> getColSubPointStuent() {
+        return colSubPointStuent;
+    }
+
+    /**
+     * @param aColSubPointStuent the colSubPointStuent to set
+     */
+    public static void setColSubPointStuent(LinkedList<SubjectsWithClassroomDTO> aColSubPointStuent) {
+        colSubPointStuent = aColSubPointStuent;
     }
     
 }

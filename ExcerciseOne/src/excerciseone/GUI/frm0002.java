@@ -12,17 +12,19 @@ import excerciseone.DTO.AccountSchoolDTO;
 import excerciseone.DTO.ClassRoomDTO;
 import excerciseone.DTO.StudentsDTO;
 import excerciseone.DTO.SubjectsDTO;
+import excerciseone.DTO.SubjectsWithClassroomDTO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.ArrayList;
+import java.io.UnsupportedEncodingException;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -107,6 +109,7 @@ public class frm0002 extends javax.swing.JFrame {
         modeltablepointsubject.addColumn("POINT SUMMARY");
         tablepointsubject = new javax.swing.JTable(modeltablepointsubject);
         cbxpointsubject = new javax.swing.JComboBox<>();
+        labelsubjpoint = new javax.swing.JLabel();
         jpannelviewstudentsubject = new javax.swing.JPanel();
         labelviewstudentsubject = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -122,6 +125,7 @@ public class frm0002 extends javax.swing.JFrame {
         modeltablestudentsubject.addColumn("IDENTITY");
         tablestudentsubject = new javax.swing.JTable(modeltablestudentsubject);
         cbxstudentsubject = new javax.swing.JComboBox<>();
+        labelsubjectstudensuject = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         File = new javax.swing.JMenu();
         importStudent = new javax.swing.JMenuItem();
@@ -272,6 +276,14 @@ public class frm0002 extends javax.swing.JFrame {
         jScrollPane4.setViewportView(tablepointsubject);
 
         cbxpointsubject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxpointsubject.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxpointsubjectItemStateChanged(evt);
+            }
+        });
+
+        labelsubjpoint.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        labelsubjpoint.setText("Point of Subject: ");
 
         javax.swing.GroupLayout jpannelviewpointsubjectLayout = new javax.swing.GroupLayout(jpannelviewpointsubject);
         jpannelviewpointsubject.setLayout(jpannelviewpointsubjectLayout);
@@ -281,7 +293,9 @@ public class frm0002 extends javax.swing.JFrame {
                 .addComponent(labelviewpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(cbxpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelsubjpoint, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(160, 160, 160))
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
         jpannelviewpointsubjectLayout.setVerticalGroup(
@@ -290,7 +304,8 @@ public class frm0002 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpannelviewpointsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelviewpointsubject)
-                    .addComponent(cbxpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelsubjpoint))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
         );
@@ -304,6 +319,14 @@ public class frm0002 extends javax.swing.JFrame {
         jScrollPane5.setViewportView(tablestudentsubject);
 
         cbxstudentsubject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxstudentsubject.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxstudentsubjectItemStateChanged(evt);
+            }
+        });
+
+        labelsubjectstudensuject.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        labelsubjectstudensuject.setText("All Student of subject:");
 
         javax.swing.GroupLayout jpannelviewstudentsubjectLayout = new javax.swing.GroupLayout(jpannelviewstudentsubject);
         jpannelviewstudentsubject.setLayout(jpannelviewstudentsubjectLayout);
@@ -313,7 +336,9 @@ public class frm0002 extends javax.swing.JFrame {
                 .addComponent(labelviewstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(cbxstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelsubjectstudensuject, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125))
             .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
         jpannelviewstudentsubjectLayout.setVerticalGroup(
@@ -322,9 +347,10 @@ public class frm0002 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpannelviewstudentsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelviewstudentsubject)
-                    .addComponent(cbxstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
+                    .addComponent(cbxstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelsubjectstudensuject))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelRootLayout = new javax.swing.GroupLayout(jPanelRoot);
@@ -683,6 +709,7 @@ public class frm0002 extends javax.swing.JFrame {
     private void viewstudentsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewstudentsubjectActionPerformed
         // TODO add your handling code here:
         createCombox();
+        labelsubjectstudensuject.setVisible(true);
         jpannelviewpointsubject.setVisible(false);
         jpannelviewscheduleclass.setVisible(false);
         jpannelviewstudentclass.setVisible(false);
@@ -692,8 +719,9 @@ public class frm0002 extends javax.swing.JFrame {
     private void viewpointsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewpointsubjectActionPerformed
         // TODO add your handling code here:
          createCombox();
+         labelsubjpoint.setVisible(true);
         jpannelviewpointsubject.setVisible(true);
-        jpannelviewscheduleclass.setVisible(true);
+        jpannelviewscheduleclass.setVisible(false);
         jpannelviewstudentclass.setVisible(false);
         jpannelviewstudentsubject.setVisible(false);
     }//GEN-LAST:event_viewpointsubjectActionPerformed
@@ -772,6 +800,49 @@ public class frm0002 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_importschedulesActionPerformed
 
+    private void cbxstudentsubjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxstudentsubjectItemStateChanged
+        // TODO add your handling code here:
+         if(cbxstudentsubject.getSelectedItem() !=  null){
+            String nameclass=cbxstudentsubject.getSelectedItem().toString();
+            Iterator<SubjectsWithClassroomDTO> in= Frm0002BLL.getColSubPointStuent().iterator();
+            while(in.hasNext()){
+                try {
+                    SubjectsWithClassroomDTO ob=in.next();
+                    String name=ob.getNameroom()+"_"+ob.getCodesubject();
+                    String aa= new String( ob.getNamesubject().getBytes("UTF-8"), "UTF-8");
+                    if(name.equals(nameclass)){
+                        labelsubjectstudensuject.setText(aa);
+                        labelsubjectstudensuject.setVisible(true);
+                        getIntoTableSubjectStudents(ob.getCollectionstudent());
+                    }
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(frm0002.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_cbxstudentsubjectItemStateChanged
+
+    private void cbxpointsubjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxpointsubjectItemStateChanged
+        // TODO add your handling code here:
+       if(cbxpointsubject.getSelectedItem() !=  null){
+            String nameclass=cbxpointsubject.getSelectedItem().toString();
+            Iterator<SubjectsWithClassroomDTO> in= Frm0002BLL.getColSubPointStuent().iterator();
+            while(in.hasNext()){
+                SubjectsWithClassroomDTO ob=in.next();
+                String name=ob.getNameroom()+"_"+ob.getCodesubject();
+                if(name.equals(nameclass)){
+                    try {
+                        labelsubjpoint.setText(new String(ob.getNamesubject().getBytes("UTF-8")));
+                    } catch (UnsupportedEncodingException ex) {
+                        Logger.getLogger(frm0002.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    labelsubjpoint.setVisible(true);
+                   getIntoTableSubjectStudents(ob.getCollectionstudent());
+                }
+            }
+        }
+    }//GEN-LAST:event_cbxpointsubjectItemStateChanged
+
     
     /**
      * @param args the command line arguments
@@ -834,6 +905,8 @@ public class frm0002 extends javax.swing.JFrame {
     private javax.swing.JPanel jpannelviewscheduleclass;
     private javax.swing.JPanel jpannelviewstudentclass;
     private javax.swing.JPanel jpannelviewstudentsubject;
+    private javax.swing.JLabel labelsubjectstudensuject;
+    private javax.swing.JLabel labelsubjpoint;
     private javax.swing.JLabel labelviewpointsubject;
     private javax.swing.JLabel labelviewscheduleclass;
     private javax.swing.JLabel labelviewstudentclass;
@@ -875,12 +948,21 @@ public class frm0002 extends javax.swing.JFrame {
         // set student class, scheduler class
         Frm0002BLL.getAllClassRoom();
         Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
+        Iterator<SubjectsWithClassroomDTO> ins= Frm0002BLL.getColSubPointStuent().iterator();
         cbxstudentclass.removeAllItems();
         cbxscheduleclass.removeAllItems();
+        cbxstudentsubject.removeAllItems();
+        cbxpointsubject.removeAllItems();
         while(in.hasNext()){
             ClassRoomDTO ob=in.next(); 
             cbxstudentclass.addItem(ob.getNameroom());
             cbxscheduleclass.addItem(ob.getNameroom());
+        }
+        while(ins.hasNext()){
+            SubjectsWithClassroomDTO ob=ins.next();
+            String name=ob.getNameroom()+"_"+ob.getCodesubject();
+            cbxstudentsubject.addItem(name);
+            cbxpointsubject.addItem(name);
         }
     }
     
@@ -916,6 +998,23 @@ public class frm0002 extends javax.swing.JFrame {
             vt.add(stu.getCodesubject());
             vt.add(stu.getNamesubject());
             vt.add(stu.getRoomstudy());
+            model.addRow(vt);
+        }
+    }
+    
+    void getIntoTableSubjectStudents(LinkedList<StudentsDTO> col){
+        DefaultTableModel model=(DefaultTableModel) tablestudentsubject.getModel();
+        model.setRowCount(0);
+        Iterator<StudentsDTO> in= col.iterator();
+        int i=1;
+        while(in.hasNext()){
+            StudentsDTO stu=in.next();
+            Vector vt=new Vector();
+            vt.add(i++);
+            vt.add(stu.getMssv());
+            vt.add(stu.getName());
+            vt.add(stu.getSex());
+            vt.add(stu.getIdentity());
             model.addRow(vt);
         }
     }

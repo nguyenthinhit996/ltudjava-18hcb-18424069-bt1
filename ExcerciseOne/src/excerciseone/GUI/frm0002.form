@@ -490,7 +490,9 @@
                       <Component id="labelviewpointsubject" min="-2" pref="243" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       <Component id="cbxpointsubject" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="labelsubjpoint" min="-2" pref="243" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane4" pref="1024" max="32767" attributes="0"/>
               </Group>
@@ -502,6 +504,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelviewpointsubject" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cbxpointsubject" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelsubjpoint" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane4" pref="435" max="32767" attributes="0"/>
@@ -544,9 +547,20 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbxpointsubjectItemStateChanged"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelsubjpoint">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Ubuntu" size="18" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Point of Subject: "/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -567,7 +581,9 @@
                       <Component id="labelviewstudentsubject" min="-2" pref="265" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       <Component id="cbxstudentsubject" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="labelsubjectstudensuject" min="-2" pref="265" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane5" pref="1024" max="32767" attributes="0"/>
               </Group>
@@ -579,9 +595,10 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelviewstudentsubject" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cbxstudentsubject" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelsubjectstudensuject" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane5" pref="435" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane5" pref="447" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -621,9 +638,20 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbxstudentsubjectItemStateChanged"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelsubjectstudensuject">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Ubuntu" size="18" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="All Student of subject:"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

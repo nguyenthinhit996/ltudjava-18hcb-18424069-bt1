@@ -25,7 +25,9 @@ public class SubjectsWithClassroomDTO {
         this.codesubject=codesub;
         this.collectionstudent=colstuden;
         this.collectionpoint=colpoint;
+        this.namesubject=namesub;
     }
+    
 
     /**
      * @return the nameroom

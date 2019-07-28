@@ -5,7 +5,9 @@
  */
 package excerciseone.DAL;
 
+import excerciseone.DTO.ClassRoomDTO;
 import excerciseone.DTO.StudentsDTO;
+import excerciseone.DTO.SubjectsDTO;
 import excerciseone.DTO.SubjectsWithClassroomDTO;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -83,12 +85,38 @@ public class SubjectsWithClassroomDAL {
 //    private LinkedList<StudentsWithPointDTO> collectionpoint;
 //    private LinkedList<StudentsDTO> collectionstudent;
     
-    ArrayList<String> getAllSubjectClass(){
-        
+     ArrayList<String> getAllSubjectClass(){
+        ArrayList<String> colstr=new ArrayList<>();
+        ClassRoomDAL cr= new ClassRoomDAL();
+        LinkedList<ClassRoomDTO> colcr=cr.getAllClassRoom();
+        Iterator<ClassRoomDTO> in = colcr.iterator();
+        while(in.hasNext()){
+            ClassRoomDTO ne= in.next();
+            if(ne.getCollectionSUB()!= null){
+                for(SubjectsDTO i:ne.getCollectionSUB()){
+                    String s=ne.getNameroom()+"_"+i.getCodesubject()+"_"+i.getNamesubject();
+                    colstr.add(s);
+                }   
+            }
+        }
+        return colstr;
     }
     
-    public static LinkedList<SubjectsWithClassroomDTO> getAllSubjectOfStudnensPoint(){
-        
+    public LinkedList<SubjectsWithClassroomDTO> getAllSubjectOfStudentsPoint(){
+        LinkedList<SubjectsWithClassroomDTO> ds= new LinkedList<>();
+        ArrayList<String> listSub=getAllSubjectClass();
+        ClassRoomDAL cdal= new ClassRoomDAL();
+        for(String i :listSub){
+            final String [] con= i.split("_");
+            String nameSub=con[0]+"_"+con[1];
+            String pathstu=FileDAL.getPathFile(nameSub);
+            LinkedList<StudentsDTO> stus=cdal.getStudentsDTOClassRoomByPath(pathstu);
+            // get diem nua
+            SubjectsWithClassroomDTO a= 
+            new SubjectsWithClassroomDTO(con[0],con[1],con[2], stus, null);
+            ds.add(a);
+        }
+        return ds;
     }
     
 }
