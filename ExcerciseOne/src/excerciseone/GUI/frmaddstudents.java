@@ -20,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 public class frmaddstudents extends javax.swing.JFrame {
 
     private Map<String,String> mapmaxmssvclass;
+    private frm0002 frm0002s;
     /**
      * Creates new form frmAddStudents
      */
@@ -252,6 +253,8 @@ public class frmaddstudents extends javax.swing.JFrame {
                     txtidentityaddstudent.setText("");
                     txtnamestudentadd.setText("");
                     labelgenaratemssvaddstudnet.setText("");
+                    frm0002s.loadstudentclass();
+                    
                 }else{
                     labelerror.setText("Error Not Save !!! ");
                     labelerror.setVisible(true);
@@ -359,6 +362,20 @@ public class frmaddstudents extends javax.swing.JFrame {
      */
     public void setMapmaxmssvclass(Map<String,String> mapmaxmssvclass) {
         this.mapmaxmssvclass = mapmaxmssvclass;
+    }
+
+    /**
+     * @return the frm0002s
+     */
+    public frm0002 getFrm0002s() {
+        return frm0002s;
+    }
+
+    /**
+     * @param frm0002s the frm0002s to set
+     */
+    public void setFrm0002s(frm0002 frm0002s) {
+        this.frm0002s = frm0002s;
     }
 
     

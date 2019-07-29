@@ -30,6 +30,13 @@ public class StudentsDTO implements Comparable<StudentsDTO>{
          this.identity=Long.valueOf(ds[3]);   
         }
     }
+    
+    public StudentsDTO(StudentsDTO t){
+         this.mssv=t.mssv;
+         this.name=t.name;
+         this.sex=t.sex;
+         this.identity=t.identity;   
+    }
 
     /**
      * @return the mssv

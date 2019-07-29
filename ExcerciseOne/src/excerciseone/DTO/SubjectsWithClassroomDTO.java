@@ -28,6 +28,13 @@ public class SubjectsWithClassroomDTO {
         this.namesubject=namesub;
     }
     
+    public SubjectsWithClassroomDTO(SubjectsWithClassroomDTO b){
+       this.nameclass=b.nameclass;
+        this.codesubject=b.codesubject;
+        this.collectionstudent=b.collectionstudent;
+        this.collectionpoint=b.collectionpoint;
+        this.namesubject=b.namesubject;
+    }
 
     /**
      * @return the nameroom

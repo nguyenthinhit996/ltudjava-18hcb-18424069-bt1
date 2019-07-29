@@ -8,11 +8,13 @@ package excerciseone.GUI;
 import excerciseone.BLL.Frm0002BLL;
 import excerciseone.BLL.Common;
 import excerciseone.DAL.FileDAL;
+import excerciseone.DAL.SubjectsWithClassroomDAL;
 import excerciseone.DTO.AccountSchoolDTO;
 import excerciseone.DTO.ClassRoomDTO;
 import excerciseone.DTO.StudentsDTO;
 import excerciseone.DTO.SubjectsDTO;
 import excerciseone.DTO.SubjectsWithClassroomDTO;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -126,6 +128,8 @@ public class frm0002 extends javax.swing.JFrame {
         tablestudentsubject = new javax.swing.JTable(modeltablestudentsubject);
         cbxstudentsubject = new javax.swing.JComboBox<>();
         labelsubjectstudensuject = new javax.swing.JLabel();
+        btnoutclass = new javax.swing.JButton();
+        btninclass = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         File = new javax.swing.JMenu();
         importStudent = new javax.swing.JMenuItem();
@@ -133,8 +137,6 @@ public class frm0002 extends javax.swing.JFrame {
         importpoint = new javax.swing.JMenuItem();
         Edit = new javax.swing.JMenu();
         managestudentclass = new javax.swing.JMenuItem();
-        managastudentsubject = new javax.swing.JMenuItem();
-        managapointstudent = new javax.swing.JMenuItem();
         View = new javax.swing.JMenu();
         viewstudentclass = new javax.swing.JMenuItem();
         viewscheduleclass = new javax.swing.JMenuItem();
@@ -290,12 +292,12 @@ public class frm0002 extends javax.swing.JFrame {
         jpannelviewpointsubjectLayout.setHorizontalGroup(
             jpannelviewpointsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpannelviewpointsubjectLayout.createSequentialGroup()
-                .addComponent(labelviewpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
+                .addComponent(labelviewpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(cbxpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(labelsubjpoint, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(160, 160, 160))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
         jpannelviewpointsubjectLayout.setVerticalGroup(
@@ -307,7 +309,7 @@ public class frm0002 extends javax.swing.JFrame {
                     .addComponent(cbxpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelsubjpoint))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE))
         );
 
         jpannelviewstudentsubject.setBackground(new java.awt.Color(129, 211, 227));
@@ -328,29 +330,61 @@ public class frm0002 extends javax.swing.JFrame {
         labelsubjectstudensuject.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         labelsubjectstudensuject.setText("All Student of subject:");
 
+        btnoutclass.setBackground(new java.awt.Color(195, 190, 152));
+        btnoutclass.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btnoutclass.setText("Out Class");
+        btnoutclass.setName("btnlogin"); // NOI18N
+        btnoutclass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnoutclassMouseClicked(evt);
+            }
+        });
+
+        btninclass.setBackground(new java.awt.Color(241, 215, 36));
+        btninclass.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btninclass.setText("In Class");
+        btninclass.setName("btnlogin"); // NOI18N
+        btninclass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btninclassMouseClicked(evt);
+            }
+        });
+        btninclass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btninclassActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpannelviewstudentsubjectLayout = new javax.swing.GroupLayout(jpannelviewstudentsubject);
         jpannelviewstudentsubject.setLayout(jpannelviewstudentsubjectLayout);
         jpannelviewstudentsubjectLayout.setHorizontalGroup(
             jpannelviewstudentsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpannelviewstudentsubjectLayout.createSequentialGroup()
-                .addComponent(labelviewstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
+                .addComponent(labelviewstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbxstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72)
+                .addComponent(btninclass)
+                .addGap(66, 66, 66)
+                .addComponent(btnoutclass)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelsubjectstudensuject, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(125, 125, 125))
+                .addComponent(labelsubjectstudensuject, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
         jpannelviewstudentsubjectLayout.setVerticalGroup(
             jpannelviewstudentsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpannelviewstudentsubjectLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpannelviewstudentsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelviewstudentsubject)
-                    .addComponent(cbxstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelsubjectstudensuject))
+                .addGroup(jpannelviewstudentsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpannelviewstudentsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnoutclass)
+                        .addComponent(btninclass))
+                    .addGroup(jpannelviewstudentsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelviewstudentsubject)
+                        .addComponent(cbxstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelsubjectstudensuject)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelRootLayout = new javax.swing.GroupLayout(jPanelRoot);
@@ -443,12 +477,6 @@ public class frm0002 extends javax.swing.JFrame {
         });
         Edit.add(managestudentclass);
 
-        managastudentsubject.setText("Manage Student Subject");
-        Edit.add(managastudentsubject);
-
-        managapointstudent.setText("Manage Point Student");
-        Edit.add(managapointstudent);
-
         jMenuBar1.add(Edit);
 
         View.setBackground(new java.awt.Color(79, 142, 163));
@@ -531,13 +559,13 @@ public class frm0002 extends javax.swing.JFrame {
             ActionListener updateClockAction = new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        timecurrents.setText(com.getTimeCurrent());
+                        getTimecurrents().setText(com.getTimeCurrent());
                       }
             };
             Timer t = new Timer(1000, updateClockAction);
             t.start();
             
-            username.setText(accurent.getNameshow());
+            getUsername().setText(getAccurent().getNameshow());
             
 //            Thread abc= new Thread(new Runnable() {
 //                @Override
@@ -564,7 +592,7 @@ public class frm0002 extends javax.swing.JFrame {
         frmlogout frmlogout= new frmlogout();
         frmlogout.setVisible(true);
         frmlogout.setAlwaysOnTop(true);
-        frmlogout.setAccountSchool(accurent);
+        frmlogout.setAccountSchool(getAccurent());
         frmlogout.setFrm0002s(this);
     }//GEN-LAST:event_btnlogoutMousePressed
 
@@ -575,7 +603,7 @@ public class frm0002 extends javax.swing.JFrame {
         frmchangepassword frmchange= new frmchangepassword();
         frmchange.setVisible(true);
         frmchange.setAlwaysOnTop(true);
-        frmchange.setAccountschool(accurent);
+        frmchange.setAccountschool(getAccurent());
         frmchange.setFrm0002s(this);
     }//GEN-LAST:event_btnchangepassMouseClicked
 
@@ -600,10 +628,10 @@ public class frm0002 extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
           
-        jpannelviewpointsubject.setVisible(false);
-        jpannelviewscheduleclass.setVisible(false);
-        jpannelviewstudentclass.setVisible(false);
-        jpannelviewstudentsubject.setVisible(false);
+        getJpannelviewpointsubject().setVisible(false);
+        getJpannelviewscheduleclass().setVisible(false);
+        getJpannelviewstudentclass().setVisible(false);
+        getJpannelviewstudentsubject().setVisible(false);
     }//GEN-LAST:event_formComponentShown
 
     private void importStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importStudentActionPerformed
@@ -637,19 +665,19 @@ public class frm0002 extends javax.swing.JFrame {
                // view student class
                Frm0002BLL frm0002bll = new Frm0002BLL();
                Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
-               cbxstudentclass.removeAllItems();
+                getCbxstudentclass().removeAllItems();
                while(in.hasNext()){
                     ClassRoomDTO ob=in.next();                   
                     getIntoTableStudentClass(ob.getCollectionSTU());
-                    cbxstudentclass.addItem(ob.getNameroom());
+                    getCbxstudentclass().addItem(ob.getNameroom());
                }
                //All Students Class:
-               labelviewstudentclass.setText("Students is Imported:");
-                 jScrollPane2.getVerticalScrollBar().setValue(0);
-                    jpannelviewpointsubject.setVisible(false);
-                    jpannelviewscheduleclass.setVisible(false);
-                    jpannelviewstudentclass.setVisible(true);
-                    jpannelviewstudentsubject.setVisible(false);
+                getLabelviewstudentclass().setText("Students is Imported:");
+                 getjScrollPane2().getVerticalScrollBar().setValue(0);
+                    getJpannelviewpointsubject().setVisible(false);
+                    getJpannelviewscheduleclass().setVisible(false);
+                    getJpannelviewstudentclass().setVisible(true);
+                    getJpannelviewstudentsubject().setVisible(false);
            }
         } else if (status == JFileChooser.CANCEL_OPTION) {
             jFileChooserImport.cancelSelection();
@@ -658,24 +686,37 @@ public class frm0002 extends javax.swing.JFrame {
 
     private void cbxstudentclassItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxstudentclassItemStateChanged
         // TODO add your handling code here:
-        if(cbxstudentclass.getSelectedItem() !=  null){
-            String nameclass=cbxstudentclass.getSelectedItem().toString();
+        if(getCbxstudentclass().getSelectedItem() !=  null){
+            String nameclass=getCbxstudentclass().getSelectedItem().toString();
             Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
             while(in.hasNext()){
                 ClassRoomDTO ob=in.next(); 
                 if(ob.getNameroom().equals(nameclass)){
                    getIntoTableStudentClass(ob.getCollectionSTU());
-                   jScrollPane2.getVerticalScrollBar().setValue(0);
+                    getjScrollPane2().getVerticalScrollBar().setValue(0);
                 }
             }
         }
-        
     }//GEN-LAST:event_cbxstudentclassItemStateChanged
 
+    public void loadstudentclass(){
+        if(getCbxstudentclass().getSelectedItem() !=  null){
+            String nameclass=getCbxstudentclass().getSelectedItem().toString();
+            Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
+            while(in.hasNext()){
+                ClassRoomDTO ob=in.next(); 
+                if(ob.getNameroom().equals(nameclass)){
+                   getIntoTableStudentClass(ob.getCollectionSTU());
+                    getjScrollPane2().getVerticalScrollBar().setValue(0);
+                }
+            }
+        }
+    }
+    
     private void cbxscheduleclassItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxscheduleclassItemStateChanged
         // TODO add your handling code here:
-        if(cbxscheduleclass.getSelectedItem() !=  null){
-            String nameclass=cbxscheduleclass.getSelectedItem().toString();
+        if(getCbxscheduleclass().getSelectedItem() !=  null){
+            String nameclass=getCbxscheduleclass().getSelectedItem().toString();
             Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
             while(in.hasNext()){
                 ClassRoomDTO ob=in.next(); 
@@ -689,41 +730,41 @@ public class frm0002 extends javax.swing.JFrame {
     private void viewstudentclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewstudentclassActionPerformed
         // TODO add your handling code here:
          createCombox();
-         labelviewstudentclass.setText("All Students Class:");
-        jpannelviewpointsubject.setVisible(false);
-        jpannelviewscheduleclass.setVisible(false);
-        jpannelviewstudentclass.setVisible(true);
-        jpannelviewstudentsubject.setVisible(false);
+         getLabelviewstudentclass().setText("All Students Class:");
+        getJpannelviewpointsubject().setVisible(false);
+        getJpannelviewscheduleclass().setVisible(false);
+        getJpannelviewstudentclass().setVisible(true);
+        getJpannelviewstudentsubject().setVisible(false);
     }//GEN-LAST:event_viewstudentclassActionPerformed
 
     private void viewscheduleclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewscheduleclassActionPerformed
         // TODO add your handling code here:
         createCombox();
-        labelviewscheduleclass.setText("SChedule Of Class:");
-        jpannelviewpointsubject.setVisible(false);
-        jpannelviewscheduleclass.setVisible(true);
-        jpannelviewstudentclass.setVisible(false);
-        jpannelviewstudentsubject.setVisible(false);
+        getLabelviewscheduleclass().setText("SChedule Of Class:");
+        getJpannelviewpointsubject().setVisible(false);
+        getJpannelviewscheduleclass().setVisible(true);
+        getJpannelviewstudentclass().setVisible(false);
+        getJpannelviewstudentsubject().setVisible(false);
     }//GEN-LAST:event_viewscheduleclassActionPerformed
 
     private void viewstudentsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewstudentsubjectActionPerformed
         // TODO add your handling code here:
         createCombox();
-        labelsubjectstudensuject.setVisible(true);
-        jpannelviewpointsubject.setVisible(false);
-        jpannelviewscheduleclass.setVisible(false);
-        jpannelviewstudentclass.setVisible(false);
-        jpannelviewstudentsubject.setVisible(true);
+        getLabelsubjectstudensuject().setVisible(true);
+        getJpannelviewpointsubject().setVisible(false);
+        getJpannelviewscheduleclass().setVisible(false);
+        getJpannelviewstudentclass().setVisible(false);
+        getJpannelviewstudentsubject().setVisible(true);
     }//GEN-LAST:event_viewstudentsubjectActionPerformed
 
     private void viewpointsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewpointsubjectActionPerformed
         // TODO add your handling code here:
          createCombox();
-         labelsubjpoint.setVisible(true);
-        jpannelviewpointsubject.setVisible(true);
-        jpannelviewscheduleclass.setVisible(false);
-        jpannelviewstudentclass.setVisible(false);
-        jpannelviewstudentsubject.setVisible(false);
+         getLabelsubjpoint().setVisible(true);
+        getJpannelviewpointsubject().setVisible(true);
+        getJpannelviewscheduleclass().setVisible(false);
+        getJpannelviewstudentclass().setVisible(false);
+        getJpannelviewstudentsubject().setVisible(false);
     }//GEN-LAST:event_viewpointsubjectActionPerformed
 
     
@@ -741,6 +782,7 @@ public class frm0002 extends javax.swing.JFrame {
             long l=Long.valueOf(i.getCollectionSTU().getLast().getMssv()) +1;
             col.put(i.getNameroom(), String.valueOf(l));
         }
+        addstudent.setFrm0002s(this);
         addstudent.setMapmaxmssvclass(col);
         addstudent.setVisible(true);
     }//GEN-LAST:event_managestudentclassActionPerformed
@@ -781,19 +823,19 @@ public class frm0002 extends javax.swing.JFrame {
                // view student class
                Frm0002BLL frm0002bll = new Frm0002BLL();
                Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
-               cbxscheduleclass.removeAllItems();
+                getCbxscheduleclass().removeAllItems();
                while(in.hasNext()){
                     ClassRoomDTO ob=in.next();                   
                     getIntoTableStudentClass(ob.getCollectionSTU());
-                    cbxscheduleclass.addItem(ob.getNameroom());
+                    getCbxscheduleclass().addItem(ob.getNameroom());
                }
                //All Students Class:
-               labelviewscheduleclass.setText("SChedule is Imported:");
-                 jScrollPane2.getVerticalScrollBar().setValue(0);
-                    jpannelviewpointsubject.setVisible(false);
-                    jpannelviewscheduleclass.setVisible(true);
-                    jpannelviewstudentclass.setVisible(false);
-                    jpannelviewstudentsubject.setVisible(false);
+                getLabelviewscheduleclass().setText("SChedule is Imported:");
+                 getjScrollPane2().getVerticalScrollBar().setValue(0);
+                    getJpannelviewpointsubject().setVisible(false);
+                    getJpannelviewscheduleclass().setVisible(true);
+                    getJpannelviewstudentclass().setVisible(false);
+                    getJpannelviewstudentsubject().setVisible(false);
            }
         } else if (status == JFileChooser.CANCEL_OPTION) {
             jFileChooserImport.cancelSelection();
@@ -802,8 +844,8 @@ public class frm0002 extends javax.swing.JFrame {
 
     private void cbxstudentsubjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxstudentsubjectItemStateChanged
         // TODO add your handling code here:
-         if(cbxstudentsubject.getSelectedItem() !=  null){
-            String nameclass=cbxstudentsubject.getSelectedItem().toString();
+         if(getCbxstudentsubject().getSelectedItem() !=  null){
+            String nameclass=getCbxstudentsubject().getSelectedItem().toString();
             Iterator<SubjectsWithClassroomDTO> in= Frm0002BLL.getColSubPointStuent().iterator();
             while(in.hasNext()){
                 try {
@@ -811,8 +853,8 @@ public class frm0002 extends javax.swing.JFrame {
                     String name=ob.getNameroom()+"_"+ob.getCodesubject();
                     String aa= new String( ob.getNamesubject().getBytes("UTF-8"), "UTF-8");
                     if(name.equals(nameclass)){
-                        labelsubjectstudensuject.setText(aa);
-                        labelsubjectstudensuject.setVisible(true);
+                        getLabelsubjectstudensuject().setText(aa);
+                        getLabelsubjectstudensuject().setVisible(true);
                         getIntoTableSubjectStudents(ob.getCollectionstudent());
                     }
                 } catch (UnsupportedEncodingException ex) {
@@ -822,26 +864,106 @@ public class frm0002 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbxstudentsubjectItemStateChanged
 
+    public void loadcbxstudentsubject(){
+        if(getCbxstudentsubject().getSelectedItem() !=  null){
+            String nameclass=getCbxstudentsubject().getSelectedItem().toString();
+            Iterator<SubjectsWithClassroomDTO> in= Frm0002BLL.getColSubPointStuent().iterator();
+            while(in.hasNext()){
+                try {
+                    SubjectsWithClassroomDTO ob=in.next();
+                    String name=ob.getNameroom()+"_"+ob.getCodesubject();
+                    String aa= new String( ob.getNamesubject().getBytes("UTF-8"), "UTF-8");
+                    if(name.equals(nameclass)){
+                        getLabelsubjectstudensuject().setText(aa);
+                        getLabelsubjectstudensuject().setVisible(true);
+                        getIntoTableSubjectStudents(ob.getCollectionstudent());
+                    }
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(frm0002.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
     private void cbxpointsubjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxpointsubjectItemStateChanged
         // TODO add your handling code here:
-       if(cbxpointsubject.getSelectedItem() !=  null){
-            String nameclass=cbxpointsubject.getSelectedItem().toString();
+       if(getCbxpointsubject().getSelectedItem() !=  null){
+            String nameclass=getCbxpointsubject().getSelectedItem().toString();
             Iterator<SubjectsWithClassroomDTO> in= Frm0002BLL.getColSubPointStuent().iterator();
             while(in.hasNext()){
                 SubjectsWithClassroomDTO ob=in.next();
                 String name=ob.getNameroom()+"_"+ob.getCodesubject();
                 if(name.equals(nameclass)){
                     try {
-                        labelsubjpoint.setText(new String(ob.getNamesubject().getBytes("UTF-8")));
+                        getLabelsubjpoint().setText(new String(ob.getNamesubject().getBytes("UTF-8")));
                     } catch (UnsupportedEncodingException ex) {
                         Logger.getLogger(frm0002.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    labelsubjpoint.setVisible(true);
+                    getLabelsubjpoint().setVisible(true);
                    getIntoTableSubjectStudents(ob.getCollectionstudent());
                 }
             }
         }
     }//GEN-LAST:event_cbxpointsubjectItemStateChanged
+
+    private void btnoutclassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnoutclassMouseClicked
+       // TODO add your handling code here:
+       int r=tablestudentsubject.getSelectedRow();
+       System.out.println("row "+r);
+       frmerror er= new frmerror();
+       if(r==-1){
+           er.getLabelerrorroot().setForeground(Color.red);
+           er.setStrError("Not choose any row yet !");
+           er.setVisible(true);
+       }else{
+           String valuegetMssv = tablestudentsubject.getModel().getValueAt(r,1).toString();
+           
+           SubjectsWithClassroomDTO ds =null;
+           Iterator<SubjectsWithClassroomDTO> in= Frm0002BLL.getColSubPointStuent().iterator();
+           while(in.hasNext()){
+             SubjectsWithClassroomDTO ob=in.next();
+             String name=ob.getNameroom()+"_"+ob.getCodesubject();
+             if(name.equals(cbxstudentsubject.getSelectedItem().toString())){
+                ds= new SubjectsWithClassroomDTO(ob);
+                break;
+             }
+            }
+            LinkedList<StudentsDTO> dss=ds.getCollectionstudent();
+            int indexdelete=0;
+            for(StudentsDTO i:dss){
+               if(i.getMssv().equals(valuegetMssv)){
+                   break;
+               }
+               indexdelete++;
+            }
+            System.out.println(dss.remove(indexdelete));
+            ds.setCollectionstudent(dss);
+            SubjectsWithClassroomDAL subdal= new SubjectsWithClassroomDAL();
+            if(subdal.writeSubjectWithStudent(ds)){
+                er.getLabelerrorroot().setForeground(Color.BLUE);
+                er.setStrError(" Moved student Mssv: "+ valuegetMssv);
+                er.setVisible(true);
+                loadcbxstudentsubject();
+                return ;
+            }
+           er.getLabelerrorroot().setForeground(Color.red);
+           er.setStrError("Not remove Mssv !"+valuegetMssv);
+           er.setVisible(true); 
+       }
+    }//GEN-LAST:event_btnoutclassMouseClicked
+
+    private void btninclassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btninclassMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btninclassMouseClicked
+
+    private void btninclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninclassActionPerformed
+        // TODO add your handling code here:
+        frmmanageclass frm= new frmmanageclass();
+        frm.setFrm0002s(this);
+        frm.setNameclass(this.cbxstudentsubject.getSelectedItem().toString());
+        frm.setVisible(true);
+    }//GEN-LAST:event_btninclassActionPerformed
 
     
     /**
@@ -887,7 +1009,9 @@ public class frm0002 extends javax.swing.JFrame {
     private javax.swing.JMenu File;
     private javax.swing.JMenu View;
     private javax.swing.JButton btnchangepass;
+    private javax.swing.JButton btninclass;
     private javax.swing.JButton btnlogout;
+    private javax.swing.JButton btnoutclass;
     private javax.swing.JComboBox<String> cbxpointsubject;
     private javax.swing.JComboBox<String> cbxscheduleclass;
     private javax.swing.JComboBox<String> cbxstudentclass;
@@ -911,8 +1035,6 @@ public class frm0002 extends javax.swing.JFrame {
     private javax.swing.JLabel labelviewscheduleclass;
     private javax.swing.JLabel labelviewstudentclass;
     private javax.swing.JLabel labelviewstudentsubject;
-    private javax.swing.JMenuItem managapointstudent;
-    private javax.swing.JMenuItem managastudentsubject;
     private javax.swing.JMenuItem managestudentclass;
     private javax.swing.JTable tablepointsubject;
     private javax.swing.JTable tablescheduleclass;
@@ -949,25 +1071,25 @@ public class frm0002 extends javax.swing.JFrame {
         Frm0002BLL.getAllClassRoom();
         Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
         Iterator<SubjectsWithClassroomDTO> ins= Frm0002BLL.getColSubPointStuent().iterator();
-        cbxstudentclass.removeAllItems();
-        cbxscheduleclass.removeAllItems();
-        cbxstudentsubject.removeAllItems();
-        cbxpointsubject.removeAllItems();
+        getCbxstudentclass().removeAllItems();
+        getCbxscheduleclass().removeAllItems();
+        getCbxstudentsubject().removeAllItems();
+        getCbxpointsubject().removeAllItems();
         while(in.hasNext()){
             ClassRoomDTO ob=in.next(); 
-            cbxstudentclass.addItem(ob.getNameroom());
-            cbxscheduleclass.addItem(ob.getNameroom());
+            getCbxstudentclass().addItem(ob.getNameroom());
+            getCbxscheduleclass().addItem(ob.getNameroom());
         }
         while(ins.hasNext()){
             SubjectsWithClassroomDTO ob=ins.next();
             String name=ob.getNameroom()+"_"+ob.getCodesubject();
-            cbxstudentsubject.addItem(name);
-            cbxpointsubject.addItem(name);
+            getCbxstudentsubject().addItem(name);
+            getCbxpointsubject().addItem(name);
         }
     }
     
     void getIntoTableStudentClass(LinkedList<StudentsDTO> col){
-        DefaultTableModel model=(DefaultTableModel) tablestudentclass.getModel();
+        DefaultTableModel model=(DefaultTableModel) getTablestudentclass().getModel();
         model.setRowCount(0);
         Iterator<StudentsDTO> in= col.iterator();
         int i=1;
@@ -984,7 +1106,7 @@ public class frm0002 extends javax.swing.JFrame {
     }
     
     void getIntoTableScheduleClass(LinkedList<SubjectsDTO> col){
-        DefaultTableModel model=(DefaultTableModel) tablescheduleclass.getModel();
+        DefaultTableModel model=(DefaultTableModel) getTablescheduleclass().getModel();
         model.setRowCount(0);
         if(col == null){
             return;
@@ -1003,7 +1125,7 @@ public class frm0002 extends javax.swing.JFrame {
     }
     
     void getIntoTableSubjectStudents(LinkedList<StudentsDTO> col){
-        DefaultTableModel model=(DefaultTableModel) tablestudentsubject.getModel();
+        DefaultTableModel model=(DefaultTableModel) getTablestudentsubject().getModel();
         model.setRowCount(0);
         Iterator<StudentsDTO> in= col.iterator();
         int i=1;
@@ -1034,4 +1156,578 @@ public class frm0002 extends javax.swing.JFrame {
 //            model.addRow(vt);
 //        }
 //    }
+
+    /**
+     * @return the Edit
+     */
+    public javax.swing.JMenu getEdit() {
+        return Edit;
+    }
+
+    /**
+     * @param Edit the Edit to set
+     */
+    public void setEdit(javax.swing.JMenu Edit) {
+        this.Edit = Edit;
+    }
+
+    /**
+     * @return the File
+     */
+    public javax.swing.JMenu getFile() {
+        return File;
+    }
+
+    /**
+     * @param File the File to set
+     */
+    public void setFile(javax.swing.JMenu File) {
+        this.File = File;
+    }
+
+    /**
+     * @return the View
+     */
+    public javax.swing.JMenu getView() {
+        return View;
+    }
+
+    /**
+     * @param View the View to set
+     */
+    public void setView(javax.swing.JMenu View) {
+        this.View = View;
+    }
+
+    /**
+     * @return the btnchangepass
+     */
+    public javax.swing.JButton getBtnchangepass() {
+        return btnchangepass;
+    }
+
+    /**
+     * @param btnchangepass the btnchangepass to set
+     */
+    public void setBtnchangepass(javax.swing.JButton btnchangepass) {
+        this.btnchangepass = btnchangepass;
+    }
+
+    /**
+     * @return the btninclass
+     */
+    public javax.swing.JButton getBtninclass() {
+        return btninclass;
+    }
+
+    /**
+     * @param btninclass the btninclass to set
+     */
+    public void setBtninclass(javax.swing.JButton btninclass) {
+        this.btninclass = btninclass;
+    }
+
+    /**
+     * @return the btnlogout
+     */
+    public javax.swing.JButton getBtnlogout() {
+        return btnlogout;
+    }
+
+    /**
+     * @param btnlogout the btnlogout to set
+     */
+    public void setBtnlogout(javax.swing.JButton btnlogout) {
+        this.btnlogout = btnlogout;
+    }
+
+    /**
+     * @return the btnoutclass
+     */
+    public javax.swing.JButton getBtnoutclass() {
+        return btnoutclass;
+    }
+
+    /**
+     * @param btnoutclass the btnoutclass to set
+     */
+    public void setBtnoutclass(javax.swing.JButton btnoutclass) {
+        this.btnoutclass = btnoutclass;
+    }
+
+    /**
+     * @return the cbxpointsubject
+     */
+    public javax.swing.JComboBox<String> getCbxpointsubject() {
+        return cbxpointsubject;
+    }
+
+    /**
+     * @param cbxpointsubject the cbxpointsubject to set
+     */
+    public void setCbxpointsubject(javax.swing.JComboBox<String> cbxpointsubject) {
+        this.cbxpointsubject = cbxpointsubject;
+    }
+
+    /**
+     * @return the cbxscheduleclass
+     */
+    public javax.swing.JComboBox<String> getCbxscheduleclass() {
+        return cbxscheduleclass;
+    }
+
+    /**
+     * @param cbxscheduleclass the cbxscheduleclass to set
+     */
+    public void setCbxscheduleclass(javax.swing.JComboBox<String> cbxscheduleclass) {
+        this.cbxscheduleclass = cbxscheduleclass;
+    }
+
+    /**
+     * @return the cbxstudentclass
+     */
+    public javax.swing.JComboBox<String> getCbxstudentclass() {
+        return cbxstudentclass;
+    }
+
+    /**
+     * @param cbxstudentclass the cbxstudentclass to set
+     */
+    public void setCbxstudentclass(javax.swing.JComboBox<String> cbxstudentclass) {
+        this.cbxstudentclass = cbxstudentclass;
+    }
+
+    /**
+     * @return the cbxstudentsubject
+     */
+    public javax.swing.JComboBox<String> getCbxstudentsubject() {
+        return cbxstudentsubject;
+    }
+
+    /**
+     * @param cbxstudentsubject the cbxstudentsubject to set
+     */
+    public void setCbxstudentsubject(javax.swing.JComboBox<String> cbxstudentsubject) {
+        this.cbxstudentsubject = cbxstudentsubject;
+    }
+
+    /**
+     * @return the importStudent
+     */
+    public javax.swing.JMenuItem getImportStudent() {
+        return importStudent;
+    }
+
+    /**
+     * @param importStudent the importStudent to set
+     */
+    public void setImportStudent(javax.swing.JMenuItem importStudent) {
+        this.importStudent = importStudent;
+    }
+
+    /**
+     * @return the importpoint
+     */
+    public javax.swing.JMenuItem getImportpoint() {
+        return importpoint;
+    }
+
+    /**
+     * @param importpoint the importpoint to set
+     */
+    public void setImportpoint(javax.swing.JMenuItem importpoint) {
+        this.importpoint = importpoint;
+    }
+
+    /**
+     * @return the importschedules
+     */
+    public javax.swing.JMenuItem getImportschedules() {
+        return importschedules;
+    }
+
+    /**
+     * @param importschedules the importschedules to set
+     */
+    public void setImportschedules(javax.swing.JMenuItem importschedules) {
+        this.importschedules = importschedules;
+    }
+
+    /**
+     * @return the jMenuBar1
+     */
+    public javax.swing.JMenuBar getjMenuBar1() {
+        return jMenuBar1;
+    }
+
+    /**
+     * @param jMenuBar1 the jMenuBar1 to set
+     */
+    public void setjMenuBar1(javax.swing.JMenuBar jMenuBar1) {
+        this.jMenuBar1 = jMenuBar1;
+    }
+
+    /**
+     * @return the jPanelRoot
+     */
+    public javax.swing.JPanel getjPanelRoot() {
+        return jPanelRoot;
+    }
+
+    /**
+     * @param jPanelRoot the jPanelRoot to set
+     */
+    public void setjPanelRoot(javax.swing.JPanel jPanelRoot) {
+        this.jPanelRoot = jPanelRoot;
+    }
+
+    /**
+     * @return the jScrollPane2
+     */
+    public javax.swing.JScrollPane getjScrollPane2() {
+        return jScrollPane2;
+    }
+
+    /**
+     * @param jScrollPane2 the jScrollPane2 to set
+     */
+    public void setjScrollPane2(javax.swing.JScrollPane jScrollPane2) {
+        this.jScrollPane2 = jScrollPane2;
+    }
+
+    /**
+     * @return the jScrollPane3
+     */
+    public javax.swing.JScrollPane getjScrollPane3() {
+        return jScrollPane3;
+    }
+
+    /**
+     * @param jScrollPane3 the jScrollPane3 to set
+     */
+    public void setjScrollPane3(javax.swing.JScrollPane jScrollPane3) {
+        this.jScrollPane3 = jScrollPane3;
+    }
+
+    /**
+     * @return the jScrollPane4
+     */
+    public javax.swing.JScrollPane getjScrollPane4() {
+        return jScrollPane4;
+    }
+
+    /**
+     * @param jScrollPane4 the jScrollPane4 to set
+     */
+    public void setjScrollPane4(javax.swing.JScrollPane jScrollPane4) {
+        this.jScrollPane4 = jScrollPane4;
+    }
+
+    /**
+     * @return the jScrollPane5
+     */
+    public javax.swing.JScrollPane getjScrollPane5() {
+        return jScrollPane5;
+    }
+
+    /**
+     * @param jScrollPane5 the jScrollPane5 to set
+     */
+    public void setjScrollPane5(javax.swing.JScrollPane jScrollPane5) {
+        this.jScrollPane5 = jScrollPane5;
+    }
+
+    /**
+     * @return the jpannelviewpointsubject
+     */
+    public javax.swing.JPanel getJpannelviewpointsubject() {
+        return jpannelviewpointsubject;
+    }
+
+    /**
+     * @param jpannelviewpointsubject the jpannelviewpointsubject to set
+     */
+    public void setJpannelviewpointsubject(javax.swing.JPanel jpannelviewpointsubject) {
+        this.jpannelviewpointsubject = jpannelviewpointsubject;
+    }
+
+    /**
+     * @return the jpannelviewscheduleclass
+     */
+    public javax.swing.JPanel getJpannelviewscheduleclass() {
+        return jpannelviewscheduleclass;
+    }
+
+    /**
+     * @param jpannelviewscheduleclass the jpannelviewscheduleclass to set
+     */
+    public void setJpannelviewscheduleclass(javax.swing.JPanel jpannelviewscheduleclass) {
+        this.jpannelviewscheduleclass = jpannelviewscheduleclass;
+    }
+
+    /**
+     * @return the jpannelviewstudentclass
+     */
+    public javax.swing.JPanel getJpannelviewstudentclass() {
+        return jpannelviewstudentclass;
+    }
+
+    /**
+     * @param jpannelviewstudentclass the jpannelviewstudentclass to set
+     */
+    public void setJpannelviewstudentclass(javax.swing.JPanel jpannelviewstudentclass) {
+        this.jpannelviewstudentclass = jpannelviewstudentclass;
+    }
+
+    /**
+     * @return the jpannelviewstudentsubject
+     */
+    public javax.swing.JPanel getJpannelviewstudentsubject() {
+        return jpannelviewstudentsubject;
+    }
+
+    /**
+     * @param jpannelviewstudentsubject the jpannelviewstudentsubject to set
+     */
+    public void setJpannelviewstudentsubject(javax.swing.JPanel jpannelviewstudentsubject) {
+        this.jpannelviewstudentsubject = jpannelviewstudentsubject;
+    }
+
+    /**
+     * @return the labelsubjectstudensuject
+     */
+    public javax.swing.JLabel getLabelsubjectstudensuject() {
+        return labelsubjectstudensuject;
+    }
+
+    /**
+     * @param labelsubjectstudensuject the labelsubjectstudensuject to set
+     */
+    public void setLabelsubjectstudensuject(javax.swing.JLabel labelsubjectstudensuject) {
+        this.labelsubjectstudensuject = labelsubjectstudensuject;
+    }
+
+    /**
+     * @return the labelsubjpoint
+     */
+    public javax.swing.JLabel getLabelsubjpoint() {
+        return labelsubjpoint;
+    }
+
+    /**
+     * @param labelsubjpoint the labelsubjpoint to set
+     */
+    public void setLabelsubjpoint(javax.swing.JLabel labelsubjpoint) {
+        this.labelsubjpoint = labelsubjpoint;
+    }
+
+    /**
+     * @return the labelviewpointsubject
+     */
+    public javax.swing.JLabel getLabelviewpointsubject() {
+        return labelviewpointsubject;
+    }
+
+    /**
+     * @param labelviewpointsubject the labelviewpointsubject to set
+     */
+    public void setLabelviewpointsubject(javax.swing.JLabel labelviewpointsubject) {
+        this.labelviewpointsubject = labelviewpointsubject;
+    }
+
+    /**
+     * @return the labelviewscheduleclass
+     */
+    public javax.swing.JLabel getLabelviewscheduleclass() {
+        return labelviewscheduleclass;
+    }
+
+    /**
+     * @param labelviewscheduleclass the labelviewscheduleclass to set
+     */
+    public void setLabelviewscheduleclass(javax.swing.JLabel labelviewscheduleclass) {
+        this.labelviewscheduleclass = labelviewscheduleclass;
+    }
+
+    /**
+     * @return the labelviewstudentclass
+     */
+    public javax.swing.JLabel getLabelviewstudentclass() {
+        return labelviewstudentclass;
+    }
+
+    /**
+     * @param labelviewstudentclass the labelviewstudentclass to set
+     */
+    public void setLabelviewstudentclass(javax.swing.JLabel labelviewstudentclass) {
+        this.labelviewstudentclass = labelviewstudentclass;
+    }
+
+    /**
+     * @return the labelviewstudentsubject
+     */
+    public javax.swing.JLabel getLabelviewstudentsubject() {
+        return labelviewstudentsubject;
+    }
+
+    /**
+     * @param labelviewstudentsubject the labelviewstudentsubject to set
+     */
+    public void setLabelviewstudentsubject(javax.swing.JLabel labelviewstudentsubject) {
+        this.labelviewstudentsubject = labelviewstudentsubject;
+    }
+
+    /**
+     * @return the managestudentclass
+     */
+    public javax.swing.JMenuItem getManagestudentclass() {
+        return managestudentclass;
+    }
+
+    /**
+     * @param managestudentclass the managestudentclass to set
+     */
+    public void setManagestudentclass(javax.swing.JMenuItem managestudentclass) {
+        this.managestudentclass = managestudentclass;
+    }
+
+    /**
+     * @return the tablepointsubject
+     */
+    public javax.swing.JTable getTablepointsubject() {
+        return tablepointsubject;
+    }
+
+    /**
+     * @param tablepointsubject the tablepointsubject to set
+     */
+    public void setTablepointsubject(javax.swing.JTable tablepointsubject) {
+        this.tablepointsubject = tablepointsubject;
+    }
+
+    /**
+     * @return the tablescheduleclass
+     */
+    public javax.swing.JTable getTablescheduleclass() {
+        return tablescheduleclass;
+    }
+
+    /**
+     * @param tablescheduleclass the tablescheduleclass to set
+     */
+    public void setTablescheduleclass(javax.swing.JTable tablescheduleclass) {
+        this.tablescheduleclass = tablescheduleclass;
+    }
+
+    /**
+     * @return the tablestudentclass
+     */
+    public javax.swing.JTable getTablestudentclass() {
+        return tablestudentclass;
+    }
+
+    /**
+     * @param tablestudentclass the tablestudentclass to set
+     */
+    public void setTablestudentclass(javax.swing.JTable tablestudentclass) {
+        this.tablestudentclass = tablestudentclass;
+    }
+
+    /**
+     * @return the tablestudentsubject
+     */
+    public javax.swing.JTable getTablestudentsubject() {
+        return tablestudentsubject;
+    }
+
+    /**
+     * @param tablestudentsubject the tablestudentsubject to set
+     */
+    public void setTablestudentsubject(javax.swing.JTable tablestudentsubject) {
+        this.tablestudentsubject = tablestudentsubject;
+    }
+
+    /**
+     * @return the timecurrents
+     */
+    public javax.swing.JLabel getTimecurrents() {
+        return timecurrents;
+    }
+
+    /**
+     * @param timecurrents the timecurrents to set
+     */
+    public void setTimecurrents(javax.swing.JLabel timecurrents) {
+        this.timecurrents = timecurrents;
+    }
+
+    /**
+     * @return the username
+     */
+    public javax.swing.JLabel getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(javax.swing.JLabel username) {
+        this.username = username;
+    }
+
+    /**
+     * @return the viewpointsubject
+     */
+    public javax.swing.JMenuItem getViewpointsubject() {
+        return viewpointsubject;
+    }
+
+    /**
+     * @param viewpointsubject the viewpointsubject to set
+     */
+    public void setViewpointsubject(javax.swing.JMenuItem viewpointsubject) {
+        this.viewpointsubject = viewpointsubject;
+    }
+
+    /**
+     * @return the viewscheduleclass
+     */
+    public javax.swing.JMenuItem getViewscheduleclass() {
+        return viewscheduleclass;
+    }
+
+    /**
+     * @param viewscheduleclass the viewscheduleclass to set
+     */
+    public void setViewscheduleclass(javax.swing.JMenuItem viewscheduleclass) {
+        this.viewscheduleclass = viewscheduleclass;
+    }
+
+    /**
+     * @return the viewstudentclass
+     */
+    public javax.swing.JMenuItem getViewstudentclass() {
+        return viewstudentclass;
+    }
+
+    /**
+     * @param viewstudentclass the viewstudentclass to set
+     */
+    public void setViewstudentclass(javax.swing.JMenuItem viewstudentclass) {
+        this.viewstudentclass = viewstudentclass;
+    }
+
+    /**
+     * @return the viewstudentsubject
+     */
+    public javax.swing.JMenuItem getViewstudentsubject() {
+        return viewstudentsubject;
+    }
+
+    /**
+     * @param viewstudentsubject the viewstudentsubject to set
+     */
+    public void setViewstudentsubject(javax.swing.JMenuItem viewstudentsubject) {
+        this.viewstudentsubject = viewstudentsubject;
+    }
 }

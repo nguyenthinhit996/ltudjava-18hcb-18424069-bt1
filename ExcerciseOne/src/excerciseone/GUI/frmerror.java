@@ -104,7 +104,7 @@ public class frmerror extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        labelerrorroot.setText(strError);
+        getLabelerrorroot().setText(getStrError());
     }//GEN-LAST:event_formWindowActivated
 
     /**
@@ -160,5 +160,47 @@ public class frmerror extends javax.swing.JFrame {
      */
     public void setStrError(String strError) {
         this.strError = strError;
+    }
+
+    /**
+     * @return the btnErrorRoot
+     */
+    public javax.swing.JButton getBtnErrorRoot() {
+        return btnErrorRoot;
+    }
+
+    /**
+     * @param btnErrorRoot the btnErrorRoot to set
+     */
+    public void setBtnErrorRoot(javax.swing.JButton btnErrorRoot) {
+        this.btnErrorRoot = btnErrorRoot;
+    }
+
+    /**
+     * @return the jPanel1
+     */
+    public javax.swing.JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    /**
+     * @param jPanel1 the jPanel1 to set
+     */
+    public void setjPanel1(javax.swing.JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    /**
+     * @return the labelerrorroot
+     */
+    public javax.swing.JLabel getLabelerrorroot() {
+        return labelerrorroot;
+    }
+
+    /**
+     * @param labelerrorroot the labelerrorroot to set
+     */
+    public void setLabelerrorroot(javax.swing.JLabel labelerrorroot) {
+        this.labelerrorroot = labelerrorroot;
     }
 }
