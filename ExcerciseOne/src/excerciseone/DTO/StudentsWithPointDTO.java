@@ -25,6 +25,15 @@ public class StudentsWithPointDTO {
         this.pointmid=0;
         this.pointsummary=0;
     }
+    
+    public StudentsWithPointDTO(String ms, String name,int gk,int ck,int khac,float tong){
+        this.namestudent=name;
+        this.mssv=ms;
+        this.pointdifference=khac;
+        this.pointfinal=ck;
+        this.pointmid=gk;
+        this.pointsummary=tong;
+    }
 
     /**
      * @return the namestudent
@@ -109,6 +118,20 @@ public class StudentsWithPointDTO {
     public void setPointsummary(float pointsummary) {
         this.pointsummary = pointsummary;
     }
-    
+    public String toStringDTO(){
+        StringBuilder bul= new StringBuilder();
+        bul.append(this.mssv);
+        bul.append(",");
+        bul.append(this.namestudent);
+        bul.append(",");
+        bul.append(this.pointmid);
+        bul.append(",");
+        bul.append(this.pointfinal);
+        bul.append(",");
+        bul.append(this.pointdifference);
+        bul.append(",");
+        bul.append(this.pointsummary);
+        return bul.toString();
+    }
     
 }

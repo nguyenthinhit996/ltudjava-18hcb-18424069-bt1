@@ -6,6 +6,7 @@
 package excerciseone.BLL;
 
 import excerciseone.DAL.ClassRoomDAL;
+import excerciseone.DAL.StudentsWithPointDAL;
 import excerciseone.DAL.SubjectsDAL;
 import excerciseone.DAL.SubjectsWithClassroomDAL;
 import excerciseone.DTO.ClassRoomDTO;
@@ -95,6 +96,24 @@ public class Frm0002BLL {
              return true;
          }
      }
+     
+     public boolean importPointClass(String strpath){
+         StudentsWithPointDAL sub= new StudentsWithPointDAL();
+         SubjectsWithClassroomDTO clasrom=sub.readPointSubjectsWithClassroomByPath(strpath);
+         if(clasrom != null){
+             colSubPointStuent.clear();
+             colSubPointStuent.add(clasrom);
+             SubjectsWithClassroomDAL lass= new SubjectsWithClassroomDAL();
+             if(lass.writeSubjectWithStudent(clasrom)){
+                    return true;
+            }else{
+                 return false;
+             }
+         }else{
+             return true;
+         }
+     }
+     
     
     public boolean writeStudentsClass(ClassRoomDTO cr){
          ClassRoomDAL classroom = new ClassRoomDAL();
