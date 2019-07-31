@@ -400,34 +400,25 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelviewscheduleclass1" min="-2" pref="206" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="cbxscheduleclass" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane3" pref="1012" max="32767" attributes="0"/>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                          <Component id="labelviewscheduleclass1" min="-2" pref="206" max="-2" attributes="0"/>
-                          <EmptySpace pref="796" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="jScrollPane3" pref="1024" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cbxscheduleclass" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" pref="464" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="labelviewscheduleclass1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="481" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="cbxscheduleclass" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelviewscheduleclass1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane3" pref="435" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -493,8 +484,8 @@
                       <Component id="labelviewpointsubject" min="-2" pref="162" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="cbxpointsubject" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="labelsubjpoint" min="-2" pref="243" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                      <Component id="btnchangepoint" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="labelxacxuatdau" min="-2" pref="206" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -509,11 +500,11 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelviewpointsubject" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cbxpointsubject" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelsubjpoint" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="labelxacxuatdau" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnchangepoint" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane4" pref="466" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" pref="435" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -560,14 +551,6 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelsubjpoint">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="18" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Point of Subject: "/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="labelxacxuatdau">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -575,6 +558,22 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Percent pass: "/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnchangepoint">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="24" green="d7" red="f1" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Ubuntu" size="18" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Change Point"/>
+                <Property name="name" type="java.lang.String" value="btnlogin" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnchangepointMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnchangepointActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -599,8 +598,7 @@
                       <Component id="btninclass" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                       <Component id="btnoutclass" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="labelsubjectstudensuject" min="-2" pref="265" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane5" pref="1024" max="32767" attributes="0"/>
               </Group>
@@ -617,11 +615,10 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelviewstudentsubject" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="cbxstudentsubject" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelsubjectstudensuject" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane5" pref="473" max="32767" attributes="0"/>
+                      <Component id="jScrollPane5" pref="447" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -667,14 +664,6 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
-            </Component>
-            <Component class="javax.swing.JLabel" name="labelsubjectstudensuject">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="18" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="All Student of subject:"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnoutclass">
               <Properties>

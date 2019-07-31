@@ -113,8 +113,8 @@ public class frm0002 extends javax.swing.JFrame {
         modeltablepointsubject.addColumn("STATUS");
         tablepointsubject = new javax.swing.JTable(modeltablepointsubject);
         cbxpointsubject = new javax.swing.JComboBox<>();
-        labelsubjpoint = new javax.swing.JLabel();
         labelxacxuatdau = new javax.swing.JLabel();
+        btnchangepoint = new javax.swing.JButton();
         jpannelviewstudentsubject = new javax.swing.JPanel();
         labelviewstudentsubject = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -130,7 +130,6 @@ public class frm0002 extends javax.swing.JFrame {
         modeltablestudentsubject.addColumn("IDENTITY");
         tablestudentsubject = new javax.swing.JTable(modeltablestudentsubject);
         cbxstudentsubject = new javax.swing.JComboBox<>();
-        labelsubjectstudensuject = new javax.swing.JLabel();
         btnoutclass = new javax.swing.JButton();
         btninclass = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -255,28 +254,22 @@ public class frm0002 extends javax.swing.JFrame {
         jpannelviewscheduleclassLayout.setHorizontalGroup(
             jpannelviewscheduleclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpannelviewscheduleclassLayout.createSequentialGroup()
-                .addGap(210, 210, 210)
+                .addContainerGap()
+                .addComponent(labelviewscheduleclass1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbxscheduleclass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
-            .addGroup(jpannelviewscheduleclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jpannelviewscheduleclassLayout.createSequentialGroup()
-                    .addGap(10, 10, 10)
-                    .addComponent(labelviewscheduleclass1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(796, Short.MAX_VALUE)))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
         jpannelviewscheduleclassLayout.setVerticalGroup(
             jpannelviewscheduleclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpannelviewscheduleclassLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cbxscheduleclass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jpannelviewscheduleclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxscheduleclass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelviewscheduleclass1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
-            .addGroup(jpannelviewscheduleclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jpannelviewscheduleclassLayout.createSequentialGroup()
-                    .addGap(27, 27, 27)
-                    .addComponent(labelviewscheduleclass1)
-                    .addContainerGap(481, Short.MAX_VALUE)))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
         );
 
         jpannelviewpointsubject.setBackground(new java.awt.Color(129, 211, 227));
@@ -294,11 +287,23 @@ public class frm0002 extends javax.swing.JFrame {
             }
         });
 
-        labelsubjpoint.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        labelsubjpoint.setText("Point of Subject: ");
-
         labelxacxuatdau.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         labelxacxuatdau.setText("Percent pass: ");
+
+        btnchangepoint.setBackground(new java.awt.Color(241, 215, 36));
+        btnchangepoint.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btnchangepoint.setText("Change Point");
+        btnchangepoint.setName("btnlogin"); // NOI18N
+        btnchangepoint.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnchangepointMouseClicked(evt);
+            }
+        });
+        btnchangepoint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnchangepointActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpannelviewpointsubjectLayout = new javax.swing.GroupLayout(jpannelviewpointsubject);
         jpannelviewpointsubject.setLayout(jpannelviewpointsubjectLayout);
@@ -308,8 +313,8 @@ public class frm0002 extends javax.swing.JFrame {
                 .addComponent(labelviewpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cbxpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelsubjpoint, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95)
+                .addComponent(btnchangepoint)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelxacxuatdau, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -322,10 +327,10 @@ public class frm0002 extends javax.swing.JFrame {
                 .addGroup(jpannelviewpointsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelviewpointsubject)
                     .addComponent(cbxpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelsubjpoint)
-                    .addComponent(labelxacxuatdau))
+                    .addComponent(labelxacxuatdau)
+                    .addComponent(btnchangepoint))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
         );
 
         jpannelviewstudentsubject.setBackground(new java.awt.Color(129, 211, 227));
@@ -342,9 +347,6 @@ public class frm0002 extends javax.swing.JFrame {
                 cbxstudentsubjectItemStateChanged(evt);
             }
         });
-
-        labelsubjectstudensuject.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        labelsubjectstudensuject.setText("All Student of subject:");
 
         btnoutclass.setBackground(new java.awt.Color(195, 190, 152));
         btnoutclass.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
@@ -383,8 +385,7 @@ public class frm0002 extends javax.swing.JFrame {
                 .addComponent(btninclass)
                 .addGap(66, 66, 66)
                 .addComponent(btnoutclass)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelsubjectstudensuject, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
         jpannelviewstudentsubjectLayout.setVerticalGroup(
@@ -397,10 +398,9 @@ public class frm0002 extends javax.swing.JFrame {
                         .addComponent(btninclass))
                     .addGroup(jpannelviewstudentsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelviewstudentsubject)
-                        .addComponent(cbxstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelsubjectstudensuject)))
+                        .addComponent(cbxstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelRootLayout = new javax.swing.GroupLayout(jPanelRoot);
@@ -771,7 +771,7 @@ public class frm0002 extends javax.swing.JFrame {
     private void viewstudentsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewstudentsubjectActionPerformed
         // TODO add your handling code here:
         createCombox();
-        getLabelsubjectstudensuject().setVisible(true);
+         
         getJpannelviewpointsubject().setVisible(false);
         getJpannelviewscheduleclass().setVisible(false);
         getJpannelviewstudentclass().setVisible(false);
@@ -782,7 +782,7 @@ public class frm0002 extends javax.swing.JFrame {
     private void viewpointsubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewpointsubjectActionPerformed
         // TODO add your handling code here:
          createCombox();
-         getLabelsubjpoint().setVisible(true);
+          
         getJpannelviewpointsubject().setVisible(true);
         getJpannelviewscheduleclass().setVisible(false);
         getJpannelviewstudentclass().setVisible(false);
@@ -876,8 +876,7 @@ public class frm0002 extends javax.swing.JFrame {
                     String name=ob.getNameroom()+"_"+ob.getCodesubject();
                     String aa= new String( ob.getNamesubject().getBytes("UTF-8"), "UTF-8");
                     if(name.equals(nameclass)){
-                        getLabelsubjectstudensuject().setText(aa);
-                        getLabelsubjectstudensuject().setVisible(true);
+                         
                         getIntoTableSubjectStudents(ob.getCollectionstudent());
                     }
                 } catch (UnsupportedEncodingException ex) {
@@ -897,8 +896,7 @@ public class frm0002 extends javax.swing.JFrame {
                     String name=ob.getNameroom()+"_"+ob.getCodesubject();
                     String aa= new String( ob.getNamesubject().getBytes("UTF-8"), "UTF-8");
                     if(name.equals(nameclass)){
-                        getLabelsubjectstudensuject().setText(aa);
-                        getLabelsubjectstudensuject().setVisible(true);
+                        
                         getIntoTableSubjectStudents(ob.getCollectionstudent());
                     }
                 } catch (UnsupportedEncodingException ex) {
@@ -917,18 +915,29 @@ public class frm0002 extends javax.swing.JFrame {
                 SubjectsWithClassroomDTO ob=in.next();
                 String name=ob.getNameroom()+"_"+ob.getCodesubject();
                 if(name.equals(nameclass)){
-                    try {
-                        getLabelsubjpoint().setText(new String(ob.getNamesubject().getBytes("UTF-8")));
-                    } catch (UnsupportedEncodingException ex) {
-                        Logger.getLogger(frm0002.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    getLabelsubjpoint().setVisible(true);
+                     
                     getIntoTablePSubjectStudents(ob.getCollectionpoint());
                 }
             }
         }
     }//GEN-LAST:event_cbxpointsubjectItemStateChanged
 
+    public void loadcbxpointsubjectItemStateChanged(){
+         if(cbxpointsubject.getSelectedItem() !=  null){
+             Frm0002BLL.getAllSubPointStu();
+            String nameclass=cbxpointsubject.getSelectedItem().toString();
+            Iterator<SubjectsWithClassroomDTO> in= Frm0002BLL.getColSubPointStuent().iterator();
+            while(in.hasNext()){
+                SubjectsWithClassroomDTO ob=in.next();
+                String name=ob.getNameroom()+"_"+ob.getCodesubject();
+                if(name.equals(nameclass)){
+                     
+                    getIntoTablePSubjectStudents(ob.getCollectionpoint());
+                }
+            }
+        }
+    }
+    
     private void btnoutclassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnoutclassMouseClicked
        // TODO add your handling code here:
        int r=tablestudentsubject.getSelectedRow();
@@ -1038,6 +1047,41 @@ public class frm0002 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_importpointActionPerformed
 
+    private void btnchangepointMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnchangepointMouseClicked
+        // TODO add your handling code here:
+       int r=tablepointsubject.getSelectedRow();
+       System.out.println("row "+r);
+       frmerror er= new frmerror();
+       if(r==-1){
+           er.getLabelerrorroot().setForeground(Color.red);
+           er.setStrError("Not choose any row yet !");
+           er.setVisible(true);
+       }else{
+           String nameclass=cbxpointsubject.getSelectedItem().toString();
+           String mssvstu = tablepointsubject.getModel().getValueAt(r,1).toString();
+           String namestu = tablepointsubject.getModel().getValueAt(r,2).toString();
+           String pointmid = tablepointsubject.getModel().getValueAt(r,3).toString();
+           String pointfinal = tablepointsubject.getModel().getValueAt(r,4).toString();
+           String pointdifference = tablepointsubject.getModel().getValueAt(r,5).toString();
+           String pointsum = tablepointsubject.getModel().getValueAt(r,6).toString();
+           StudentsWithPointDTO po=
+           new StudentsWithPointDTO(mssvstu,namestu,
+            Integer.valueOf(pointmid),
+            Integer.valueOf(pointfinal),
+            Integer.valueOf(pointdifference),
+            Float.valueOf(pointsum));
+           frmchangepoint frm = new frmchangepoint();
+           frm.setFrm(this);
+           frm.setStu(po);
+           frm.setNameclass(nameclass);
+           frm.setVisible(true);
+       }
+    }//GEN-LAST:event_btnchangepointMouseClicked
+
+    private void btnchangepointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchangepointActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnchangepointActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -1082,6 +1126,7 @@ public class frm0002 extends javax.swing.JFrame {
     private javax.swing.JMenu File;
     private javax.swing.JMenu View;
     private javax.swing.JButton btnchangepass;
+    private javax.swing.JButton btnchangepoint;
     private javax.swing.JButton btninclass;
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnoutclass;
@@ -1102,8 +1147,6 @@ public class frm0002 extends javax.swing.JFrame {
     private javax.swing.JPanel jpannelviewscheduleclass;
     private javax.swing.JPanel jpannelviewstudentclass;
     private javax.swing.JPanel jpannelviewstudentsubject;
-    private javax.swing.JLabel labelsubjectstudensuject;
-    private javax.swing.JLabel labelsubjpoint;
     private javax.swing.JLabel labelviewpointsubject;
     private javax.swing.JLabel labelviewscheduleclass1;
     private javax.swing.JLabel labelviewstudentclass;
@@ -1225,31 +1268,31 @@ public class frm0002 extends javax.swing.JFrame {
     void getIntoTablePSubjectStudents(LinkedList<StudentsWithPointDTO> col){
         DefaultTableModel model=(DefaultTableModel) tablepointsubject.getModel();
         model.setRowCount(0);
-        if(col!=null){
-        Iterator<StudentsWithPointDTO> in= col.iterator();
-        int i=1;
-        int per=0;
-        while(in.hasNext()){
-            StudentsWithPointDTO stu=in.next();
-            Vector vt=new Vector();
-            vt.add(i++);
-            vt.add(stu.getMssv());
-            vt.add(stu.getNamestudent());
-            vt.add(stu.getPointmid());
-            vt.add(stu.getPointfinal());
-            vt.add(stu.getPointdifference());
-            vt.add(stu.getPointsummary());
-            if(stu.getPointsummary() >= 5){
-                vt.add("Passed");
-                per=per+1;
-            }else{
-                vt.add("falled");
+        if(col.size()>0){
+            Iterator<StudentsWithPointDTO> in= col.iterator();
+            int i=1;
+            int per=0;
+            while(in.hasNext()){
+                StudentsWithPointDTO stu=in.next();
+                Vector vt=new Vector();
+                vt.add(i++);
+                vt.add(stu.getMssv());
+                vt.add(stu.getNamestudent());
+                vt.add(stu.getPointmid());
+                vt.add(stu.getPointfinal());
+                vt.add(stu.getPointdifference());
+                vt.add(stu.getPointsummary());
+                if(stu.getPointsummary() >= 5){
+                    vt.add("Passed");
+                    per=per+1;
+                }else{
+                    vt.add("falled");
+                }
+                model.addRow(vt);
             }
-            model.addRow(vt);
-        }
-        float p=per*100/col.size();
-        String s=String.valueOf(p);
-        labelxacxuatdau.setText("Percent pass: "+ s+" %");
+            float p=per*100/col.size();
+            String s=String.valueOf(p);
+            labelxacxuatdau.setText("Percent pass: "+ s+" %");
         }
     }
     
@@ -1604,35 +1647,6 @@ public class frm0002 extends javax.swing.JFrame {
     public void setJpannelviewstudentsubject(javax.swing.JPanel jpannelviewstudentsubject) {
         this.jpannelviewstudentsubject = jpannelviewstudentsubject;
     }
-
-    /**
-     * @return the labelsubjectstudensuject
-     */
-    public javax.swing.JLabel getLabelsubjectstudensuject() {
-        return labelsubjectstudensuject;
-    }
-
-    /**
-     * @param labelsubjectstudensuject the labelsubjectstudensuject to set
-     */
-    public void setLabelsubjectstudensuject(javax.swing.JLabel labelsubjectstudensuject) {
-        this.labelsubjectstudensuject = labelsubjectstudensuject;
-    }
-
-    /**
-     * @return the labelsubjpoint
-     */
-    public javax.swing.JLabel getLabelsubjpoint() {
-        return labelsubjpoint;
-    }
-
-    /**
-     * @param labelsubjpoint the labelsubjpoint to set
-     */
-    public void setLabelsubjpoint(javax.swing.JLabel labelsubjpoint) {
-        this.labelsubjpoint = labelsubjpoint;
-    }
-
     /**
      * @return the labelviewpointsubject
      */

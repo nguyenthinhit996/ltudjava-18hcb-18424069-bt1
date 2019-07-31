@@ -5,21 +5,22 @@
  */
 package excerciseone.GUI;
 
-import excerciseone.BLL.Frm0002BLL;
-import excerciseone.DTO.ClassRoomDTO;
-import excerciseone.DTO.StudentsDTO;
+import excerciseone.DAL.FileDAL;
+import excerciseone.DAL.StudentsWithPointDAL;
+import excerciseone.DAL.SubjectsWithClassroomDAL;
+import excerciseone.DTO.StudentsWithPointDTO;
 import java.awt.Color;
+import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Map;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  *
  * @author peter
  */
 public class frmchangepoint extends javax.swing.JFrame {
-
-    private Map<String,String> mapmaxmssvclass;
+    private frm0002 frm = new frm0002();
+     private String nameclass;
+     private StudentsWithPointDTO stu;
     /**
      * Creates new form frmAddStudents
      */
@@ -37,20 +38,22 @@ public class frmchangepoint extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        cbxallclassroom = new javax.swing.JComboBox<>();
-        cbxsexaddstudent = new javax.swing.JComboBox<>();
+        cbxpointdiff = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        btnokaddstudent = new javax.swing.JButton();
-        btncanceladdstudent = new javax.swing.JButton();
+        btnokchangepoint = new javax.swing.JButton();
+        btncancelpoint = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        labelgenaratemssvaddstudnet = new javax.swing.JLabel();
+        labelmssv = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtnamestudentadd = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         labelerror = new javax.swing.JLabel();
-        txtidentityaddstudent = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        labelfullname = new javax.swing.JLabel();
+        cbxpointmid = new javax.swing.JComboBox<>();
+        cbxpointfinal = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        labelpointsum = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(500, 200));
@@ -65,73 +68,91 @@ public class frmchangepoint extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(447, 318));
         jPanel1.setRequestFocusEnabled(false);
 
-        cbxallclassroom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxallclassroom.addItemListener(new java.awt.event.ItemListener() {
+        cbxpointdiff.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nu", "Nam" }));
+        cbxpointdiff.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbxallclassroomItemStateChanged(evt);
+                cbxpointdiffItemStateChanged(evt);
             }
         });
-
-        cbxsexaddstudent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nu", "Nam" }));
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel2.setText("Class Study");
+        jLabel2.setText("Mssv:");
 
-        btnokaddstudent.setBackground(new java.awt.Color(241, 215, 36));
-        btnokaddstudent.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        btnokaddstudent.setText("OK");
-        btnokaddstudent.setName("btnlogin"); // NOI18N
-        btnokaddstudent.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnokchangepoint.setBackground(new java.awt.Color(241, 215, 36));
+        btnokchangepoint.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btnokchangepoint.setText("OK");
+        btnokchangepoint.setName("btnlogin"); // NOI18N
+        btnokchangepoint.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnokaddstudentMouseClicked(evt);
+                btnokchangepointMouseClicked(evt);
             }
         });
 
-        btncanceladdstudent.setBackground(new java.awt.Color(195, 190, 152));
-        btncanceladdstudent.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        btncanceladdstudent.setText("Cancel");
-        btncanceladdstudent.setName("btnlogin"); // NOI18N
-        btncanceladdstudent.addMouseListener(new java.awt.event.MouseAdapter() {
+        btncancelpoint.setBackground(new java.awt.Color(195, 190, 152));
+        btncancelpoint.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btncancelpoint.setText("Cancel");
+        btncancelpoint.setName("btnlogin"); // NOI18N
+        btncancelpoint.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btncanceladdstudentMouseClicked(evt);
+                btncancelpointMouseClicked(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel3.setText("Full Name");
+        jLabel3.setText("Full Name:");
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel4.setText("Identity");
+        jLabel4.setText("Point final:");
 
-        labelgenaratemssvaddstudnet.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        labelgenaratemssvaddstudnet.setForeground(new java.awt.Color(1, 1, 1));
-        labelgenaratemssvaddstudnet.setText("123456");
+        labelmssv.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        labelmssv.setForeground(new java.awt.Color(1, 1, 1));
+        labelmssv.setText("3423432");
 
         jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel6.setText("Sex");
+        jLabel6.setText("Point mid:");
 
         jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel7.setText("MSSV (Auto Gen)");
+        jLabel7.setText("Point sum");
 
         labelerror.setBackground(new java.awt.Color(176, 34, 44));
         labelerror.setFont(new java.awt.Font("Ubuntu", 1, 20)); // NOI18N
         labelerror.setForeground(new java.awt.Color(188, 39, 39));
         labelerror.setText("Error not add in to class");
 
-        txtidentityaddstudent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtidentityaddstudentActionPerformed(evt);
+        jLabel9.setFont(new java.awt.Font("Ubuntu", 1, 20)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel9.setText("Change point of Student");
+
+        labelfullname.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        labelfullname.setForeground(new java.awt.Color(1, 1, 1));
+        labelfullname.setText("none");
+
+        cbxpointmid.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nu", "Nam" }));
+        cbxpointmid.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxpointmidItemStateChanged(evt);
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Ubuntu", 1, 20)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel9.setText("Add student into Class");
+        cbxpointfinal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nu", "Nam" }));
+        cbxpointfinal.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxpointfinalItemStateChanged(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel8.setText("Point diff");
+
+        labelpointsum.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        labelpointsum.setForeground(new java.awt.Color(1, 1, 1));
+        labelpointsum.setText("123456");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,24 +169,25 @@ public class frmchangepoint extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnokchangepoint)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btncancelpoint)
+                        .addGap(69, 69, 69))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelerror)
-                            .addComponent(cbxsexaddstudent, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtnamestudentadd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbxallclassroom, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtidentityaddstudent, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelgenaratemssvaddstudnet))
-                        .addContainerGap(18, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnokaddstudent)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btncanceladdstudent)
-                        .addGap(69, 69, 69))))
+                            .addComponent(cbxpointdiff, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelmssv)
+                            .addComponent(labelfullname)
+                            .addComponent(cbxpointmid, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxpointfinal, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelpointsum))
+                        .addContainerGap(64, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,28 +197,32 @@ public class frmchangepoint extends javax.swing.JFrame {
                 .addComponent(labelerror)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbxallclassroom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(labelmssv))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnamestudentadd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(labelfullname))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbxsexaddstudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(cbxpointmid, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtidentityaddstudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxpointfinal, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelgenaratemssvaddstudnet)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbxpointdiff, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnokaddstudent)
-                    .addComponent(btncanceladdstudent))
+                    .addComponent(jLabel7)
+                    .addComponent(labelpointsum))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnokchangepoint)
+                    .addComponent(btncancelpoint))
                 .addContainerGap())
         );
 
@@ -214,85 +240,100 @@ public class frmchangepoint extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnokaddstudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnokaddstudentMouseClicked
+    private void btnokchangepointMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnokchangepointMouseClicked
         // TODO add your handling code here:
-        if(!StringUtils.isNotBlank(txtnamestudentadd.getText())){
-            labelerror.setText(" Name of Student Null");
-            labelerror.setVisible(true);
-            return ;
-        }
-        if(!StringUtils.isNotBlank(txtidentityaddstudent.getText())){
-            labelerror.setText("Identoty of Student Null");
-            labelerror.setVisible(true);
-            return ;
-        }
-        if(!StringUtils.isNumeric(txtidentityaddstudent.getText())){
-            labelerror.setText("Identoty is Not Number");
-            labelerror.setVisible(true);
-            return ;
-        }
-        String [] ds= new String[]{
-            labelgenaratemssvaddstudnet.getText(),
-            txtnamestudentadd.getText(),
-            cbxsexaddstudent.getSelectedItem().toString(),
-            txtidentityaddstudent.getText()
-        };
-        StudentsDTO stu= new StudentsDTO(ds);
-        Frm0002BLL.getAllClassRoom();
-        LinkedList<ClassRoomDTO> colClassRooms=Frm0002BLL.getColClassRoom();
-        for(ClassRoomDTO i:colClassRooms){
-            if(i.getNameroom().equals(cbxallclassroom.getSelectedItem().toString())){
-                i.getCollectionSTU().add(stu);
-                Frm0002BLL fr= new Frm0002BLL();
-                boolean ff= fr.writeStudentsClass(i);
-                if(ff){
-                    labelerror.setVisible(true);
-                    labelerror.setText("Save success Student");
-                    labelerror.setForeground(Color.BLUE);
-                    txtidentityaddstudent.setText("");
-                    txtnamestudentadd.setText("");
-                    labelgenaratemssvaddstudnet.setText("");
-                }else{
-                    labelerror.setText("Error Not Save !!! ");
-                    labelerror.setVisible(true);
+        String names=this.nameclass+"_P";
+        String path=FileDAL.getPathFile(names);
+        SubjectsWithClassroomDAL dal= new SubjectsWithClassroomDAL();
+        LinkedList<StudentsWithPointDTO> dss= dal.getPointSubjectsWithClassroomByPath(path);
+        stu.setPointmid(Integer.valueOf(cbxpointmid.getSelectedItem().toString()));
+        stu.setPointfinal(Integer.valueOf(cbxpointfinal.getSelectedItem().toString()));
+        stu.setPointdifference(Integer.valueOf(cbxpointdiff.getSelectedItem().toString()));
+        stu.setPointsummary(Integer.valueOf(labelpointsum.getText()));
+        if(dss != null){
+            Iterator<StudentsWithPointDTO> in= dss.iterator();
+            while(in.hasNext()){
+                StudentsWithPointDTO s=in.next();
+                if(s.getMssv().equals(stu.getMssv())){
+                    s.setPointmid(stu.getPointmid());
+                    s.setPointfinal(stu.getPointfinal());
+                    s.setPointdifference(stu.getPointdifference());
+                    s.setPointsummary(stu.getPointsummary());
+                    break;
                 }
-                return;
+            }
+            StudentsWithPointDAL sdal= new StudentsWithPointDAL();
+            if(!sdal.writePointSubjectsWithClassroomByPath(dss, names)){
+                labelerror.setText("Error when import point");
+                labelerror.setVisible(true);
+                labelerror.setForeground(Color.red);
+            }else{
+               labelerror.setText("Change point success ");
+                labelerror.setVisible(true);
+                labelerror.setForeground(Color.BLUE); 
+                frm.loadcbxpointsubjectItemStateChanged();
+                
             }
         }
-    }//GEN-LAST:event_btnokaddstudentMouseClicked
+        
+    }//GEN-LAST:event_btnokchangepointMouseClicked
 
-    private void btncanceladdstudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncanceladdstudentMouseClicked
+    private void btncancelpointMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelpointMouseClicked
         // TODO add your handling code here:
         
         this.dispose();
 
-    }//GEN-LAST:event_btncanceladdstudentMouseClicked
-
-    private void txtidentityaddstudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidentityaddstudentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtidentityaddstudentActionPerformed
+    }//GEN-LAST:event_btncancelpointMouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        cbxallclassroom.removeAllItems();
-        labelgenaratemssvaddstudnet.setText("null");
-        for(Map.Entry m:mapmaxmssvclass.entrySet()){
-            cbxallclassroom.addItem((String) m.getKey());
-        }
         labelerror.setVisible(false);
+       labelmssv.setText(stu.getMssv());
+       labelfullname.setText(stu.getNamestudent());
+       cbxpointmid.removeAllItems();
+       cbxpointfinal.removeAllItems();
+       cbxpointdiff.removeAllItems();
+       for(int i=1;i<=10;i++){
+           cbxpointmid.addItem(String.valueOf(i));
+           cbxpointfinal.addItem(String.valueOf(i));
+           cbxpointdiff.addItem(String.valueOf(i));
+       }
+       cbxpointmid.setSelectedItem(String.valueOf(stu.getPointmid()));
+       cbxpointfinal.setSelectedItem(String.valueOf(stu.getPointfinal()));
+       cbxpointdiff.setSelectedItem(String.valueOf(stu.getPointdifference()));
+       float pmid=Integer.valueOf(cbxpointmid.getSelectedItem().toString())*30;
+       float pmfi=Integer.valueOf(cbxpointfinal.getSelectedItem().toString())*60;
+       float pmdiff=Integer.valueOf(cbxpointdiff.getSelectedItem().toString())*10;
+       int sum=(int)(pmid+pmfi+pmdiff)/100;
+       labelpointsum.setText(String.valueOf(sum));
     }//GEN-LAST:event_formWindowActivated
 
-    private void cbxallclassroomItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxallclassroomItemStateChanged
+    private void cbxpointmidItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxpointmidItemStateChanged
         // TODO add your handling code here:
-        if(cbxallclassroom.getSelectedItem() != null){
-            for(Map.Entry m:mapmaxmssvclass.entrySet()){
-                if(cbxallclassroom.getSelectedItem().toString().equals(m.getKey())){
-                    labelgenaratemssvaddstudnet.setText((String) m.getValue());
-                }
-            }
-        }
-    }//GEN-LAST:event_cbxallclassroomItemStateChanged
+       udpatePoint();    
+    }//GEN-LAST:event_cbxpointmidItemStateChanged
 
+    private void cbxpointfinalItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxpointfinalItemStateChanged
+        // TODO add your handling code here:
+      udpatePoint();
+    }//GEN-LAST:event_cbxpointfinalItemStateChanged
+
+    private void cbxpointdiffItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxpointdiffItemStateChanged
+        // TODO add your handling code here:
+       udpatePoint();
+    }//GEN-LAST:event_cbxpointdiffItemStateChanged
+
+    void udpatePoint(){
+        if(cbxpointfinal.getSelectedItem() !=null && cbxpointmid.getSelectedItem() !=null &&
+                cbxpointdiff.getSelectedItem() !=null){
+            float pmid=Integer.valueOf(cbxpointmid.getSelectedItem().toString())*30;
+           float pmfi=Integer.valueOf(cbxpointfinal.getSelectedItem().toString())*60;
+           float pmdiff=Integer.valueOf(cbxpointdiff.getSelectedItem().toString())*10;
+           int sum=(int)(pmid+pmfi+pmdiff)/100;
+           labelpointsum.setText(String.valueOf(sum));
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -332,35 +373,66 @@ public class frmchangepoint extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btncanceladdstudent;
-    private javax.swing.JButton btnokaddstudent;
-    private javax.swing.JComboBox<String> cbxallclassroom;
-    private javax.swing.JComboBox<String> cbxsexaddstudent;
+    private javax.swing.JButton btncancelpoint;
+    private javax.swing.JButton btnokchangepoint;
+    private javax.swing.JComboBox<String> cbxpointdiff;
+    private javax.swing.JComboBox<String> cbxpointfinal;
+    private javax.swing.JComboBox<String> cbxpointmid;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelerror;
-    private javax.swing.JLabel labelgenaratemssvaddstudnet;
-    private javax.swing.JTextField txtidentityaddstudent;
-    private javax.swing.JTextField txtnamestudentadd;
+    private javax.swing.JLabel labelfullname;
+    private javax.swing.JLabel labelmssv;
+    private javax.swing.JLabel labelpointsum;
     // End of variables declaration//GEN-END:variables
 
+    
     /**
-     * @return the mapmaxmssvclass
+     * @return the nameclass
      */
-    public Map<String,String> getMapmaxmssvclass() {
-        return mapmaxmssvclass;
+    public String getNameclass() {
+        return nameclass;
     }
 
     /**
-     * @param mapmaxmssvclass the mapmaxmssvclass to set
+     * @param nameclass the nameclass to set
      */
-    public void setMapmaxmssvclass(Map<String,String> mapmaxmssvclass) {
-        this.mapmaxmssvclass = mapmaxmssvclass;
+    public void setNameclass(String nameclass) {
+        this.nameclass = nameclass;
+    }
+
+    /**
+     * @return the stu
+     */
+    public StudentsWithPointDTO getStu() {
+        return stu;
+    }
+
+    /**
+     * @param stu the stu to set
+     */
+    public void setStu(StudentsWithPointDTO stu) {
+        this.stu = stu;
+    }
+
+    /**
+     * @return the frm
+     */
+    public frm0002 getFrm() {
+        return frm;
+    }
+
+    /**
+     * @param frm the frm to set
+     */
+    public void setFrm(frm0002 frm) {
+        this.frm = frm;
     }
 
     

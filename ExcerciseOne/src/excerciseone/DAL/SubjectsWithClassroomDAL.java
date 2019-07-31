@@ -54,7 +54,7 @@ public class SubjectsWithClassroomDAL {
         return colstu;
     }
     
-    LinkedList<StudentsWithPointDTO> getPointSubjectsWithClassroomByPath(String path){
+    public LinkedList<StudentsWithPointDTO> getPointSubjectsWithClassroomByPath(String path){
        LinkedList<StudentsWithPointDTO> colstu=new LinkedList<>();
        FileDAL file= new FileDAL(path);
        BufferedReader buff=file.createBufferedReader();

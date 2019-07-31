@@ -20,6 +20,7 @@ public class frm0001 extends javax.swing.JFrame {
      */
     public frm0001() {
         initComponents();
+        txtpasslogin.setText("");
     }
 
     /**
@@ -36,9 +37,9 @@ public class frm0001 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtnamelogin = new java.awt.TextField();
-        txtpasslogin = new java.awt.TextField();
         labelerrorlogin = new javax.swing.JLabel();
         btnlogin = new javax.swing.JButton();
+        txtpasslogin = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -84,18 +85,6 @@ public class frm0001 extends javax.swing.JFrame {
             }
         });
 
-        txtpasslogin.setName("txtpasslogin"); // NOI18N
-        txtpasslogin.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtpassloginFocusGained(evt);
-            }
-        });
-        txtpasslogin.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtpassloginKeyPressed(evt);
-            }
-        });
-
         labelerrorlogin.setFont(new java.awt.Font("Ubuntu", 3, 18)); // NOI18N
         labelerrorlogin.setForeground(new java.awt.Color(247, 77, 77));
         labelerrorlogin.setText("Incorrect name or password");
@@ -108,6 +97,18 @@ public class frm0001 extends javax.swing.JFrame {
         btnlogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnloginMousePressed(evt);
+            }
+        });
+
+        txtpasslogin.setText("jPasswordField1");
+        txtpasslogin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtpassloginFocusGained(evt);
+            }
+        });
+        txtpasslogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpassloginKeyPressed(evt);
             }
         });
 
@@ -124,11 +125,11 @@ public class frm0001 extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(22, 22, 22)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtpasslogin, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtnamelogin, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtnamelogin, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
                             .addComponent(labelerrorlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnlogin))
+                            .addComponent(btnlogin)
+                            .addComponent(txtpasslogin))
                         .addGap(86, 86, 86))
                     .addComponent(jLabel1))
                 .addGap(29, 29, 29))
@@ -144,11 +145,15 @@ public class frm0001 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(txtnamelogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(txtpasslogin, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel3)
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtpasslogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(btnlogin)
                 .addContainerGap(75, Short.MAX_VALUE))
         );
@@ -185,18 +190,6 @@ public class frm0001 extends javax.swing.JFrame {
         labelerrorlogin.setVisible(false);
     }//GEN-LAST:event_txtnameloginFocusGained
 
-    private void txtpassloginFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtpassloginFocusGained
-        // TODO add your handling code here:
-          labelerrorlogin.setVisible(false);
-    }//GEN-LAST:event_txtpassloginFocusGained
-
-    private void txtpassloginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassloginKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
-           this.checklogin();
-        }
-    }//GEN-LAST:event_txtpassloginKeyPressed
-
     private void txtnameloginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnameloginKeyPressed
         // TODO add your handling code here:
          if (evt.getKeyCode()==KeyEvent.VK_ENTER){
@@ -204,9 +197,22 @@ public class frm0001 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtnameloginKeyPressed
 
+    private void txtpassloginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassloginKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            this.checklogin();
+        }
+    }//GEN-LAST:event_txtpassloginKeyPressed
+
+    private void txtpassloginFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtpassloginFocusGained
+        // TODO add your handling code here:
+         labelerrorlogin.setVisible(false);
+    }//GEN-LAST:event_txtpassloginFocusGained
+
+                                        
+ 
+    
     public void checklogin(){
-        txtnamelogin.setText("giao vu");
-        txtpasslogin.setText("100");
        labelerrorlogin.setVisible(false);
        String name=txtnamelogin.getText();
        String pass=txtpasslogin.getText();
@@ -215,7 +221,7 @@ public class frm0001 extends javax.swing.JFrame {
        AccountSchoolDTO acc=bLLfrm0001.checkLogin();
        if(acc != null){
            
-           if(acc.getNamelogin().equals("giao vu")){
+           if(acc.getNamelogin().equals("giaovu")){
                // giao vu
                 frm0002 frmgiaovu= new frm0002();
                 frmgiaovu.setAccurent(acc);
@@ -274,6 +280,6 @@ public class frm0001 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelerrorlogin;
     private java.awt.TextField txtnamelogin;
-    private java.awt.TextField txtpasslogin;
+    private javax.swing.JPasswordField txtpasslogin;
     // End of variables declaration//GEN-END:variables
 }

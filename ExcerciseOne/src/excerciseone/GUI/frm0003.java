@@ -6,11 +6,16 @@
 package excerciseone.GUI;
 
 import excerciseone.BLL.Common;
+import excerciseone.BLL.Frm0003BLL;
 import excerciseone.DTO.AccountSchoolDTO;
+import excerciseone.DTO.StudentsWithPointDTO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
+import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -41,7 +46,24 @@ public class frm0003 extends javax.swing.JFrame {
         btnchangepass = new javax.swing.JButton();
         btnlogout = new javax.swing.JButton();
         username = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jpannelviewpointsubject = new javax.swing.JPanel();
+        labelviewpointsubject = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        DefaultTableModel modeltablepointsubject= new DefaultTableModel(){
+            public boolean isCellEditable(int row, int col){
+                return false;
+            }
+        };
+        modeltablepointsubject.addColumn("STT");
+        modeltablepointsubject.addColumn("MSSV");
+        modeltablepointsubject.addColumn("FULL NAME");
+        modeltablepointsubject.addColumn("POINT MID");
+        modeltablepointsubject.addColumn("POINT FINAL");
+        modeltablepointsubject.addColumn("POINT DIFFERENCE");
+        modeltablepointsubject.addColumn("POINT SUMMARY");
+        modeltablepointsubject.addColumn("STATUS");
+        tablepointsubject = new javax.swing.JTable(modeltablepointsubject);
+        cbxpointsubject = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Management Study");
@@ -84,7 +106,42 @@ public class frm0003 extends javax.swing.JFrame {
         username.setForeground(new java.awt.Color(195, 37, 39));
         username.setText("Name");
 
-        jLabel1.setText("sdfsdfdsfsdafads");
+        jpannelviewpointsubject.setBackground(new java.awt.Color(129, 211, 227));
+        jpannelviewpointsubject.setPreferredSize(new java.awt.Dimension(1024, 500));
+
+        labelviewpointsubject.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        labelviewpointsubject.setText("Point of Subject: ");
+
+        jScrollPane4.setViewportView(tablepointsubject);
+
+        cbxpointsubject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxpointsubject.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxpointsubjectItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpannelviewpointsubjectLayout = new javax.swing.GroupLayout(jpannelviewpointsubject);
+        jpannelviewpointsubject.setLayout(jpannelviewpointsubjectLayout);
+        jpannelviewpointsubjectLayout.setHorizontalGroup(
+            jpannelviewpointsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpannelviewpointsubjectLayout.createSequentialGroup()
+                .addComponent(labelviewpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cbxpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
+        );
+        jpannelviewpointsubjectLayout.setVerticalGroup(
+            jpannelviewpointsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpannelviewpointsubjectLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpannelviewpointsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelviewpointsubject)
+                    .addComponent(cbxpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,10 +156,8 @@ public class frm0003 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnlogout)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(248, 248, 248)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jpannelviewpointsubject, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,9 +168,11 @@ public class frm0003 extends javax.swing.JFrame {
                         .addComponent(btnchangepass)
                         .addComponent(timecurrents))
                     .addComponent(username))
-                .addGap(86, 86, 86)
-                .addComponent(jLabel1)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addContainerGap(529, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 47, Short.MAX_VALUE)
+                    .addComponent(jpannelviewpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -126,7 +183,7 @@ public class frm0003 extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
         );
 
         pack();
@@ -159,6 +216,15 @@ public class frm0003 extends javax.swing.JFrame {
             t.start();
             username.setText(accurent.getNameshow());
             
+            
+            Frm0003BLL frm3= new Frm0003BLL();
+            frm3.getAllPointOfStudent(this.accurent.getNamelogin());
+            cbxpointsubject.removeAllItems();
+            for(Map.Entry i : frm3.getPointstudent().entrySet()){
+                cbxpointsubject.addItem(i.getKey().toString());
+            }
+            
+            
 //            Thread abc= new Thread(new Runnable() {
 //                @Override
 //                public void run() {
@@ -186,6 +252,35 @@ public class frm0003 extends javax.swing.JFrame {
            frmchange.setAccountschool(accurent);
            frmchange.setFrm0003s(this);
     }//GEN-LAST:event_btnchangepassMouseClicked
+
+    private void cbxpointsubjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxpointsubjectItemStateChanged
+        // TODO add your handling code here:
+         if(cbxpointsubject.getSelectedItem()!=null){
+              Frm0003BLL frm3= new Frm0003BLL();
+              DefaultTableModel mo= (DefaultTableModel) tablepointsubject.getModel();
+              mo.setRowCount(0);
+                for(Map.Entry i : frm3.getPointstudent().entrySet()){
+                    if(cbxpointsubject.getSelectedItem().toString().equals(i.getKey())){
+                        StudentsWithPointDTO ss=(StudentsWithPointDTO) i.getValue();
+                        Vector as= new Vector();
+                        as.add(1);
+                        as.add(ss.getMssv());
+                        as.add(ss.getNamestudent());
+                        as.add(ss.getPointmid());
+                        as.add(ss.getPointfinal());
+                        as.add(ss.getPointdifference());
+                        as.add(ss.getPointsummary());
+                        if(ss.getPointsummary()>=5){
+                            as.add("Passed");
+                        }else{
+                            as.add("Falsed");
+                        }
+                        mo.addRow(as);
+                        break;
+                    }
+                }
+         }
+    }//GEN-LAST:event_cbxpointsubjectItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -226,8 +321,12 @@ public class frm0003 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnchangepass;
     private javax.swing.JButton btnlogout;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> cbxpointsubject;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JPanel jpannelviewpointsubject;
+    private javax.swing.JLabel labelviewpointsubject;
+    private javax.swing.JTable tablepointsubject;
     private javax.swing.JLabel timecurrents;
     private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables

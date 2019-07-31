@@ -9,7 +9,9 @@ import excerciseone.BLL.Common;
 import excerciseone.DTO.StudentsWithPointDTO;
 import excerciseone.DTO.SubjectsWithClassroomDTO;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,5 +51,29 @@ public class StudentsWithPointDAL {
             return null;
         }
         return null;
+    }
+    
+    public boolean writePointSubjectsWithClassroomByPath(LinkedList<StudentsWithPointDTO> ob,String filenames){  
+            String paths=FileDAL.getPathFile(filenames);
+            System.out.println("luu Diem mon hoc vs sinh vien: "+paths);
+            FileDAL filedals=new FileDAL(paths);
+            BufferedWriter buffs= filedals.createBufferwriter();
+            if(buffs != null){
+                try {
+                        Iterator<StudentsWithPointDTO> colSubs=ob.iterator();
+                        while(colSubs.hasNext()){
+                            StudentsWithPointDTO sus=colSubs.next();
+                            buffs.append(sus.toStringDTO());
+                            buffs.newLine();
+                        }
+                buffs.close();
+                } catch (IOException ex) { 
+                    Logger.getLogger(SubjectsWithClassroomDAL.class.getName()).log(Level.SEVERE, null, ex);
+                    return false;
+                }
+            }else{
+                return false;
+            }
+            return true;
     }
 }
