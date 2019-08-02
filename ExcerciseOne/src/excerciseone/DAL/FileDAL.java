@@ -36,7 +36,9 @@ public class FileDAL{
         if(file.exists()){
             BufferedReader br= null;
             try {
+                
                 br = new BufferedReader(new FileReader(file));
+                 
                 return br;
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(FileDAL.class.getName()).log(Level.SEVERE, null, ex);

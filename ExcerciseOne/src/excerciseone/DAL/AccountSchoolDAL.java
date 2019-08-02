@@ -8,6 +8,7 @@ package excerciseone.DAL;
 import excerciseone.DTO.AccountSchoolDTO;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -24,7 +25,10 @@ public class AccountSchoolDAL {
      public LinkedList<AccountSchoolDTO>getAllAccount(){
         LinkedList<AccountSchoolDTO> col = new LinkedList<>();
         try {
-            FileDAL fileDAL= new FileDAL("account/accountschool.txt");
+             String path ="account"+File.separator+"accountschool.txt";
+            //FileDAL fileDAL= new FileDAL();
+            FileDAL fileDAL= new FileDAL(path);
+            System.out.println(path);
             BufferedReader br=fileDAL.createBufferedReader();
             String strcurrent;
             while((strcurrent=br.readLine()) != null){
@@ -44,7 +48,7 @@ public class AccountSchoolDAL {
    
     public void writeAllAccount(LinkedList<AccountSchoolDTO> col){
          try {
-             FileDAL fileDal= new FileDAL("account/accountschool.txt");
+             FileDAL fileDal= new FileDAL("account"+File.separator+"accountschool.txt");
              BufferedWriter bufferedWriter=fileDal.createBufferwriter();
              // detele content file
              bufferedWriter.write("");
